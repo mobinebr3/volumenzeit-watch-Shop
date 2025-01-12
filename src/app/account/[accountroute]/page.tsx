@@ -1,17 +1,21 @@
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import Acconutpage from "@/components/templates/Acconutpage";
 import User from "@/models/User";
+import { auth } from "@/utils/auth";
 import ConnecttoDB from "@/utils/ConnectToDB";
 
 import { getServerSession } from "next-auth/next";
 
 import { redirect } from "next/navigation";
 
-async function Accountroute({ params }: any) {
+async function Accountroute({
+  params,
+}: {
+  params: Promise<{ accountroute: string }>;
+}) {
   try {
     const { accountroute } = await params;
 
-    const session = await getServerSession(authOptions);
+    const session = await auth();
     if (!session) redirect("/signin");
 
     await ConnecttoDB();
