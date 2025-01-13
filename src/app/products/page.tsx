@@ -1,52 +1,68 @@
 "use client";
+import { useSearchParams } from "next/navigation";
 import ProductsPage from "@/components/templates/ProductsPage";
 import { GetProducts, setTotal } from "@/store/redux/products";
 import { AppDispatch, RootState } from "@/store/store";
 import { ProductData, ProductState } from "@/Types/typesw";
 import { SearchParamSlicec } from "@/utils/Helpreclass";
-import { useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
- function Products() {
+function Products() {
+  const searchParam = useSearchParams();
   const dispatch = useDispatch<AppDispatch>();
+  try {
+    const { data, status, curentpage, total }: ProductState = useSelector(
+      (Products: RootState) => Products.prod
+    );
 
-    const { data, status, curentpage, total }: ProductState =   useSelector(
-    (Products: RootState) => Products.prod
-  );
- 
-  useEffect(() => {
-    console.log(Array(data)[0].data?.length)
-    if(!Array(data)[0].data){
-      dispatch(GetProducts());
-    }else{
-      dispatch(setTotal(datafilter2))
+    const search = searchParam.get("search")?.toLocaleLowerCase() || "";
+
+    const price = searchParam.get("price");
+    const product = searchParam.get("products");
+    useEffect(() => {
+      if (status === "idle") {
+        dispatch(GetProducts());
+      }
+      return () => {};
+    }, []);
+
+    let filteredDAta: ProductData[] = Array(data)[0].data;
+    filteredDAta = datas();
+    function datas() {
+      if (search) {
+        filteredDAta = filteredDAta.filter((i: ProductData) =>
+          i.title.toLocaleLowerCase().includes(search)
+        );
+      }
+
+      if (price) {
+        filteredDAta = filteredDAta.filter(
+          (i: ProductData) =>
+            +i.price > Number(price?.split(",")[0]) &&
+            +i.price < Number(price?.split(",")[1])
+        );
+      }
+
+      if (product && product !== "watches") {
+        filteredDAta = [];
+      }
+      dispatch(setTotal(filteredDAta));
+      return filteredDAta;
     }
-
-    return () => {};
-  }, [total]);
-
-  const search = useSearchParams();
-  let datafilter1 : string[] |undefined
-  if (search.size) {
-    const newSearch: string[] = search?.toString().split("&");
-     datafilter1 = newSearch.map((I: string) => I.split("=")[1]);
+    return (
+      <Suspense fallback={<h1>Please wait</h1>}>
+        <ProductsPage
+          data={filteredDAta}
+          curentpage={curentpage}
+          status={status}
+          total={total}
+        />
+      </Suspense>
+    );
+  } catch (err) {
+return <h1>somtiong worng</h1>
+  }
 }
-    const datafilter2 =  !datafilter1? Array(data)[0].data :
-      datafilter1[1].toLocaleLowerCase() === "straps"
-        ? []
-        : Array(data)[0].data?.filter(
-            (i: ProductData) =>
-              i.title
-                .toLocaleLowerCase()
-                .includes(datafilter1[0].toLowerCase()) &&
-              +i.price > SearchParamSlicec(datafilter1[2])[0] &&
-              +i.price < SearchParamSlicec(datafilter1[2])[1]
-          )
-          dispatch(setTotal(datafilter2))
-
-    return <ProductsPage data={datafilter2} curentpage={curentpage}  status={status} total={total}/>;
-        }
-
 
 export default Products;

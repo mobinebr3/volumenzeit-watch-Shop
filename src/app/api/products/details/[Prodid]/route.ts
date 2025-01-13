@@ -10,7 +10,7 @@ export async function GET(
   try {
     await ConnecttoDB();
 
-    const id = params?.Prodid.toString();
+    const id =await params?.Prodid.toString();
 
     const product = await Products.findOne({ _id: id });
 

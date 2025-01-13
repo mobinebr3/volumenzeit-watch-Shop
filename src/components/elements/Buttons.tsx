@@ -9,8 +9,8 @@ function Buttonorgi({
   customeClassStyle = "",onClick
 }: {
   text: string;
-  color: string;
-  variant:
+  color?: string;
+  variant?:
     | "flat"
     | "solid"
     | "bordered"
@@ -19,13 +19,13 @@ function Buttonorgi({
     | "shadow"
     | "ghost"
     | undefined;
-  P: number|null;
-  customeClassStyle: string | undefined;
-  onClick:any 
+  P?: number
+  customeClassStyle?: string 
+  onClick?:any
 }) {
   return (
     <Button
-
+onPress={onClick}
       variant={variant}
       style={{ backgroundColor: color, border: color }}
       className={`bg-${color} font-normal text-[14px] z-30 text-white flex items-center justify-center   h-14 ${
