@@ -60,13 +60,12 @@ function DetailsPhotoSwiper() {
             i={i as string}
             key={index}
             slide={slide}
-            setSlide={setSlide}
             noSlide={true}
             num={index}
           />
         ))}
         <div
-          className="flex overflow-x-scroll  max-[390px]:px-5 scrollbar-track-transparent scrollbar-thumb-transparent scrollbar-hide whitespace-nowrap scroll-smooth max-w-full  p-2 rounded-lg"
+          className="flex overflow-x-scroll   scrollbar-track-transparent scrollbar-thumb-transparent scrollbar-hide whitespace-nowrap scroll-smooth max-w-full  p-2 rounded-lg"
           ref={ref}
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}

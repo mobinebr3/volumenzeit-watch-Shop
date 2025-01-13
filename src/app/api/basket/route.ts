@@ -1,5 +1,7 @@
 import Basket from "@/models/basket";
+import User from "@/models/User";
 import ConnecttoDB from "@/utils/ConnectToDB";
+import { Types } from "mongoose";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
@@ -11,20 +13,22 @@ export async function POST(req: any) {
     if (!price || !off || !url || !strap || !title) {
       return NextResponse.json({ error: "invalid Data" }, { status: 400 });
     }
-    const session = await getServerSession(req);
-    if (!session) {
+    const session :any = await getServerSession(req);
+ 
+console.log(session)
+    const user:any = await User.findOne({email: session.user.email})
+    if (!user) {
       return NextResponse.json(
         { error: "Unauthorized - Please login first" },
         { status: 401 }
       );
     }
-
     const order = await Basket.create({
       price,
       off,
       url,
       strap,
-   
+      userId : new Types.ObjectId(user?._id),
       title,
     });
     if (!order) {
@@ -63,19 +67,12 @@ export async function POST(req: any) {
 
 
 
-export async function GET(req: any) {
+export async function GET() {
   try {
     await ConnecttoDB();
-    const session = await getServerSession(req);
-    if (!session) {
-      return NextResponse.json(
-        { error: "Unauthorized - Please login first" },
-        { status: 401 }
-      );
-    }
-    const productsBasket = await Basket.find({ isOrder: false }).select(
-      "-userId"
-    );
+   
+
+    const productsBasket = await Basket.find({ isOrder: false })
 
     if (!productsBasket) {
       return NextResponse.json(
@@ -84,5 +81,9 @@ export async function GET(req: any) {
       );
     }
     return NextResponse.json({ data: productsBasket }, { status: 200 });
-  } catch (err) {}
+  } catch (err) {
+    
+    console.log(err)
+    return NextResponse.json({ err:err }, { status: 500 });
+  }
 }

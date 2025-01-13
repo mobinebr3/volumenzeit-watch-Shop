@@ -1,11 +1,25 @@
-"use client";
+"use client"
+import {Suspense} from 'react'
+export default  function ProductPage() {
+  return (
+    <>
+      {" "}
+      <Suspense fallback={<h1>Please wait</h1>}>
+        {" "}
+        <Products />{" "}
+      </Suspense>{" "}
+    </>
+  );
+}
+
+
 import { useSearchParams } from "next/navigation";
 import ProductsPage from "@/components/templates/ProductsPage";
 import { GetProducts, setTotal } from "@/store/redux/products";
 import { AppDispatch, RootState } from "@/store/store";
 import { ProductData, ProductState } from "@/Types/typesw";
-import { SearchParamSlicec } from "@/utils/Helpreclass";
-import { Suspense, useEffect } from "react";
+
+import {  useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 function Products() {
@@ -51,18 +65,14 @@ function Products() {
       return filteredDAta;
     }
     return (
-      <Suspense fallback={<h1>Please wait</h1>}>
-        <ProductsPage
-          data={filteredDAta}
-          curentpage={curentpage}
-          status={status}
-          total={total}
-        />
-      </Suspense>
+      <ProductsPage
+        data={filteredDAta}
+        curentpage={curentpage}
+        status={status}
+        total={total}
+      />
     );
   } catch (err) {
-return <h1>somtiong worng</h1>
+    return <h1>somtiong worng</h1>;
   }
 }
-
-export default Products;

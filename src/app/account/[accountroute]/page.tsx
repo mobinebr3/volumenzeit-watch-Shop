@@ -1,5 +1,6 @@
 import Acconutpage from "@/components/templates/Acconutpage";
 import User from "@/models/User";
+import { UserInfo } from "@/Types/typesw";
 import { auth } from "@/utils/auth";
 import ConnecttoDB from "@/utils/ConnectToDB";
 import { getServerSession } from "next-auth";
@@ -17,15 +18,15 @@ async function Accountroute({
     const { accountroute } = await params;
 
     await ConnecttoDB();
-    const { email, role, name, lastname } = await User.findOne({
+    const res :UserInfo |null = await User.findOne({
       email: session?.user?.email,
     });
+   if(!res) return <div>somthing error</div>;
+ 
+    if (accountroute === "admin" && res.role !== "ADMIN") redirect("/");
+    if (accountroute === "edite" && res.role !== "ADMIN") redirect("/");
 
-    if (accountroute === "admin" && role !== "ADMIN") redirect("/");
-    if (accountroute === "edite" && role !== "ADMIN") redirect("/");
-    const data = { email, role, name, lastname };
-
-    return <Acconutpage data={data} />;
+    return <Acconutpage data={JSON.parse(JSON.stringify(res))} />;
   } catch (error) {
     console.log(error);
     return <div>somthing error</div>;

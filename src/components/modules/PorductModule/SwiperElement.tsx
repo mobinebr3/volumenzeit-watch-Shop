@@ -1,7 +1,7 @@
 "use client";
 import { SetailsImages } from "@/utils/Items";
 import Image from "next/image";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, memo, SetStateAction } from "react";
 
 function SwiperElement({
   i,
@@ -14,14 +14,14 @@ function SwiperElement({
   i: string;
   slide: number;
   noSlide: boolean;
-  setSlide: Dispatch<SetStateAction<number>>;
+  setSlide?: Dispatch<SetStateAction<number>>;
 }) {
   if (noSlide)
     return (
       <div >
       <div className="">  <Image
-          className={`h-[400px] max-w-96 mx-5  max-[410px]:w-[360px]     max-[380px]:w-[330px]  max-[348]:w-[280px]  rounded ${
-            SetailsImages[slide] === i ? "" : " hidden "
+          className={`h-[400px] max-w-96 mx-5    rounded ${
+            slide === num? "" : " hidden "
           } `}
           src={`${i}.png`}
           alt={"title"}
@@ -39,7 +39,7 @@ function SwiperElement({
           }`}
         >
           <Image
-            onClick={() => setSlide(num)}
+            onClick={() => setSlide?.(num)}
             className={`h-fit max-w-96  my-3    rounded-md  ease-linear duration-300   ${
               SetailsImages[slide] === i
                 ? "outline-double outline-purpuleColor outline-4   outline-offset-2 scale-105 "
@@ -55,4 +55,4 @@ function SwiperElement({
     );
 }
 
-export default SwiperElement;
+export default memo(SwiperElement);

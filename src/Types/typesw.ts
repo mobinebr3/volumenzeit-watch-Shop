@@ -49,24 +49,31 @@ export interface ProductData {
   price: string;
   url: string;
   images: string;
-  details: [{string:string}];
+  details: [{ string: string }];
   off: string;
   addAt: Date;
   __v: number;
 }
 export type ProductfetchType = {
-  data: ProductData
+  data: ProductData;
 };
 
-export interface BasketData{
+export interface BasketData {
   _id: string;
-  strap:string
+  strap: string;
   title: string;
   amount: number;
-  isOreder:boolean;
+  isOreder: boolean;
   price: number;
   url: string;
   off: number;
   addAt: Date;
   __v: number;
+}
+export interface UserInfo {
+  _id: string;
+  role: "ADMIN" | "USER";
+  name: string;
+  email: string;
+  lastanme: string;
 }

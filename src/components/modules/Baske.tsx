@@ -9,14 +9,14 @@ import Box from "../icons/Box";
 import TaxIcon from "../icons/TaxIcon";
 import { BasketData } from "@/Types/typesw";
 
-function BasketPage() {
+function BasketPage({ userid }: any) {
   const [product, setProdct] = useState<{ status: number; data: BasketData[] }>(
     {
       status: 0,
       data: [],
     }
   );
-
+ 
   const DelHandler = async (id: string) => {
     await api
       .delete(`/api/basket/${id}`)
@@ -43,7 +43,6 @@ function BasketPage() {
     if (!product.status) fetch();
     return () => {
       controaller?.abort();
-  
     };
   }, []);
   const pricess = () =>
@@ -53,39 +52,41 @@ function BasketPage() {
     <section>
       <div className="max-w-96 px-4 pt-5 bg-white rounded-xl ml-auto">
         {product?.status === 200 &&
-          product.data.map((i: any) => (
-            <div className=" my-4 relative" key={i._id}>
-              <span
-                className=" absolute  right-0 "
-                onClick={() => DelHandler(i._id)}
-              >
-                <AiTwotoneDelete
-                  size={25}
-                  className="hover:fill-red-700  ease-linear duration-200 hover:scale-110"
-                />{" "}
-              </span>
-              <div className=" flex mb-3 justify-start">
-                <Image
-                  alt={i.strap}
-                  src={i.url}
-                  width={88}
-                  height={103}
-                  className=" rounded-xl mr-5 drop-shadow-md "
-                />
-                <div className="flex flex-col">
-                  {" "}
-                  <div>
-                    <h1 className="font-medium">{i.title}</h1>
-                    <p className="text-textcolor text-[10px]">{i.strap}</p>
+          product.data
+            .filter((i: any) => i.userId === userid)
+            .map((i: any) => (
+              <div className=" my-4 relative" key={i._id}>
+                <span
+                  className=" absolute  right-0 "
+                  onClick={() => DelHandler(i._id)}
+                >
+                  <AiTwotoneDelete
+                    size={25}
+                    className="hover:fill-red-700  ease-linear duration-200 hover:scale-110"
+                  />{" "}
+                </span>
+                <div className=" flex mb-3 justify-start">
+                  <Image
+                    alt={i.strap}
+                    src={i.url}
+                    width={88}
+                    height={103}
+                    className=" rounded-xl mr-5 drop-shadow-md "
+                  />
+                  <div className="flex flex-col">
+                    {" "}
+                    <div>
+                      <h1 className="font-medium">{i.title}</h1>
+                      <p className="text-textcolor text-[10px]">{i.strap}</p>
+                    </div>
+                    <h2 className=" text-[20px] mt-2">
+                      ${i.price.toLocaleString()}
+                    </h2>
                   </div>
-                  <h2 className=" text-[20px] mt-2">
-                    ${i.price.toLocaleString()}
-                  </h2>
                 </div>
+                <hr />
               </div>
-              <hr />
-            </div>
-          ))}
+            ))}
         <div className=" flex justify-start mb-3 ">
           <div className="w-[88px] h-[103px] mr-3 bg-bgcolor drop-shadow-md rounded-xl flex items-center justify-center *:scale-110 ">
             {" "}

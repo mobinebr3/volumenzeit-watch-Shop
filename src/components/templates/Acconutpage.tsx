@@ -5,11 +5,11 @@ import { usePathname } from "next/navigation";
 import React from "react";
 import Dashboard from "../modules/Dashboard";
 import Adminpanel from "../modules/Adminpanel";
-import EditeWatchCard from "../modules/EditeWatchCard";
-import AdminEditePage from "../modules/AdminEditePage";
-import BasketPage from "../modules/Baske";
 
-function Acconutpage({ data }: any) {
+import AdminEditePage from "../modules/AdminEditePage";
+import BasketPage from "@/components/modules/Baske";
+import { UserInfo } from "@/Types/typesw";
+function Acconutpage({ data }: { data: UserInfo }) {
   const query = usePathname();
 
   return (
@@ -80,7 +80,7 @@ function Acconutpage({ data }: any) {
           )}
           {query === "/account/admin" && <Adminpanel />}
           {query === "/account/edite" && <AdminEditePage />}
-          {query === "/account/basket" && <BasketPage />}
+          {query === "/account/basket" && <BasketPage userid={data._id} />}
         </div>
       </div>
     </section>
