@@ -31,7 +31,7 @@ export const NavbarmobileItems: Navabritemstype = [
   {
     id: 4,
     title: "About Us",
-    link: "#",
+    link: "/products",
   },
   {
     id: 5,
@@ -77,8 +77,8 @@ export const accountpanl = [
   },
   {
     id: 2,
-    path: "/account/Order",
-    titile: "Order History",
+    path: "/account/basket",
+    titile: "ChekOut",
   },
   {
     id: 3,

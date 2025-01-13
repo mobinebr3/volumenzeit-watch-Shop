@@ -1,6 +1,6 @@
 import DetailPage from "@/components/templates/DetailPage";
 import { ProductfetchType } from "@/Types/typesw";
-import HeaderProductss from "@/components/modules/HeaderProducts";
+
 async function Details({ params }: { params: Promise<{ PordID: number }> }) {
   const { PordID } = await params;
   const res: any = await fetch(
@@ -11,7 +11,7 @@ async function Details({ params }: { params: Promise<{ PordID: number }> }) {
   }
 
   const { data }: ProductfetchType = await res.json();
-  console.log(data);
+
 
   return (
     <>

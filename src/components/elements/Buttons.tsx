@@ -6,7 +6,7 @@ function Buttonorgi({
   color = "purpuleColor",
   variant = "flat",
   P = 10,
-  customeClassStyle = "",
+  customeClassStyle = "",onClick
 }: {
   text: string;
   color: string;
@@ -21,9 +21,11 @@ function Buttonorgi({
     | undefined;
   P: number|null;
   customeClassStyle: string | undefined;
+  onClick:any 
 }) {
   return (
     <Button
+
       variant={variant}
       style={{ backgroundColor: color, border: color }}
       className={`bg-${color} font-normal text-[14px] z-30 text-white flex items-center justify-center   h-14 ${

@@ -45,16 +45,16 @@ function HeroPage() {
             </li>
           </ul>
 
-          <span className="SpaceAGEfont *:font-medium  max-lg:*:mx-[2]  max-lg:*: max-lg:*:rotate-1  flex flex-col-reverse mt-8 tracking-wide max-lg:flex-row  text-wrap whitespace-pre-line break-all *:-rotate-90">
-            <p>F</p>
-            <p>o</p>
-            <p>l</p>
-            <p>l</p>
-            <p>o</p>
-            <p>w</p>
-            <p className="mb-4 max-lg:mb-0 max-lg:pl-3">U</p>
-            <p>s</p>
-          </span>
+          <ul className="SpaceAGEfont *:font-medium  max-lg:*:mx-[2]  max-lg:*: max-lg:*:rotate-1  flex flex-col-reverse mt-8 tracking-wide max-lg:flex-row  text-wrap whitespace-pre-line break-all *:-rotate-90">
+            <li>F</li>
+            <li>o</li>
+            <li>l</li>
+            <li>l</li>
+            <li>o</li>
+            <li>w</li>
+            <li className="mb-4 max-lg:mb-0 max-lg:pl-3">U</li>
+            <li>s</li>
+          </ul>
         </div>
         <div className="  flex flex-col items-start max-lg:items-center max-lg:text-center  mt-36 max-lg:mt-16  max-lg:m-0  ml-24">
           <h1 className=" SpaceAGEfont tracking-normal  max-lg:w-[450px] max-sm:w-[350px] w-[567px] max-sm:text-4xl max-lg:text-5xl text-6xl ">
@@ -64,7 +64,7 @@ function HeroPage() {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Enim
             facilisi elementum commodo ipsum. Aenean aenean adipiscing lect
           </p>
-          <Link href="/products" className="z-50 mt-14">
+          <Link href="/products" className=" mt-14">
             <Buttonorgi
               P={10}
               customeClassStyle="shadow-medium  "

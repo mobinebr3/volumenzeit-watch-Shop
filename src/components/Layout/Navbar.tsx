@@ -9,21 +9,23 @@ import {
   NavbarContent,
   NavbarItem,
   NavbarMenu,
+  useDisclosure,
 } from "@nextui-org/react";
 import Link from "next/link";
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import Buttonorgi from "../elements/Buttons";
 import BasketIcon from "../icons/BasketIcon";
 import AccountIcon from "../icons/AccountIcon";
 
 function Navbarcompnent(): React.JSX.Element {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+const {onOpenChange ,isOpen,onClose}=useDisclosure()
   const icons = useRef([<AccountIcon />, <BasketIcon />]);
   const links = useRef(['/account/dashboard','/basket']);
   return (
     <Navbar
-      isMenuOpen={isMenuOpen}
-      onMenuOpenChange={setIsMenuOpen}
+      isMenuOpen={isOpen}
+      onMenuOpenChange={onOpenChange}
+    
       maxWidth="full"
     >
       <NavbarContent className="max-xl:ml-1 ml-16" justify="start">
@@ -69,14 +71,15 @@ function Navbarcompnent(): React.JSX.Element {
         </NavbarBrand>
         <NavbarMenuToggle
           className="lg:hidden text-purpuleColor "
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          aria-label={isOpen ? "Close menu" : "Open menu"}
         />
       </NavbarContent>
       <NavbarMenu>
         {NavbarmobileItems.map((i) =>
           i.id < 6 ? (
-            <NavbarMenuItem key={`${i.title}-${i.id}`} className="mx-auto mt-8">
+        <NavbarMenuItem key={`${i.title}-${i.id}`} className="mx-auto mt-8">
               <Link
+              onClick={onClose}
                 className="w-full hover:text-black text-textcolor hover:border-b-4 p-2  text-[15px] hover:border-b-purpuleColor"
                 color={
                   i.id === 2
@@ -85,7 +88,7 @@ function Navbarcompnent(): React.JSX.Element {
                     ? "danger"
                     : "foreground"
                 }
-                href="#"
+                href={i.link}
               >
                 {i.title}
               </Link>
@@ -93,6 +96,7 @@ function Navbarcompnent(): React.JSX.Element {
           ) : (
             <NavbarMenuItem key={`${i.title}-${i.id}`} className="mx-auto mt-8">
               <Link
+              onClick={onClose}
                 className="w-full hover:text-black text-textcolor hover:border-b-4 p-2 mr-4 flex text-[15px] hover:border-b-purpuleColor"
                 color={
                   i.id === 2

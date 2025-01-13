@@ -7,12 +7,13 @@ import Dashboard from "../modules/Dashboard";
 import Adminpanel from "../modules/Adminpanel";
 import EditeWatchCard from "../modules/EditeWatchCard";
 import AdminEditePage from "../modules/AdminEditePage";
+import BasketPage from "../modules/Baske";
 
 function Acconutpage({ data }: any) {
   const query = usePathname();
 
   return (
-    <section className="">
+    <section className=" bg-bgcolor">
       <div className="w-full h-52 bg-purpuleColor flex justify-center items-center  max-md:h-32">
         {" "}
         <h3 className="SpaceAGEfont  text-white text-[42px]  max-md:text-[22px]">
@@ -79,6 +80,7 @@ function Acconutpage({ data }: any) {
           )}
           {query === "/account/admin" && <Adminpanel />}
           {query === "/account/edite" && <AdminEditePage />}
+          {query === "/account/basket" && <BasketPage />}
         </div>
       </div>
     </section>

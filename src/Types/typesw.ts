@@ -1,3 +1,5 @@
+import { IoDuplicate } from "react-icons/io5";
+
 export type Navabritemstype = {
   id: number;
   title: string;
@@ -55,3 +57,16 @@ export interface ProductData {
 export type ProductfetchType = {
   data: ProductData
 };
+
+export interface BasketData{
+  _id: string;
+  strap:string
+  title: string;
+  amount: number;
+  isOreder:boolean;
+  price: number;
+  url: string;
+  off: number;
+  addAt: Date;
+  __v: number;
+}
