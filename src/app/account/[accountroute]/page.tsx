@@ -18,11 +18,11 @@ async function Accountroute({
     const { accountroute } = await params;
 
     await ConnecttoDB();
-    const res :UserInfo |null = await User.findOne({
+    const res: UserInfo | null = await User.findOne({
       email: session?.user?.email,
     });
-   if(!res) return <div>somthing error</div>;
- 
+    if (!res) return <div>somthing error</div>;
+
     if (accountroute === "admin" && res.role !== "ADMIN") redirect("/");
     if (accountroute === "edite" && res.role !== "ADMIN") redirect("/");
 

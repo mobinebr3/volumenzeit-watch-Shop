@@ -16,7 +16,7 @@ function BasketPage({ userid }: any) {
       data: [],
     }
   );
- 
+
   const DelHandler = async (id: string) => {
     await api
       .delete(`/api/basket/${id}`)

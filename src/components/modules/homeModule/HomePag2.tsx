@@ -9,31 +9,35 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 function HomePag2() {
-  const [wind, setwind] = useState<number>(NaN);
+  const [wind, setwind] = useState<number>(window.innerWidth);
 
   useEffect(() => {
-    setwind(window.innerWidth);
+    const windowHandler = () => {
+      setwind(window.innerWidth);
+    };
+    window.addEventListener("resize", windowHandler);
+    return () => {
+      window.removeEventListener("resize", windowHandler);
+    };
+  }, []);
 
-   
-  }, [wind]);
-
-  return wind < 867 ? (
+  return wind < 900 ? (
     // ریسپانسیو در حالت موبایل
-    <section className="grid grid-cols-12 h-fit">
+    <section className="grid grid-cols-12 h-fit bg-white ">
       <h1 className="col-span-12 SpaceAGEfont text-[42px] mx-auto my-16">
         Features{" "}
       </h1>
       <div className="col-span-12 mx-auto mt-7  relative">
-        <span className="absolute  right-[50] top-[45]">
+        <span className="absolute  right-[50px] top-[45px]">
           <Circle size="300" c="145" color="#37333F" ops=".8" />
         </span>
-        <span className="absolute  right-[0] top-[15]">
+        <span className="absolute  right-[0px] top-[15px]">
           <Circle size="380" c="175" color="#37333F" ops=".5" />
         </span>
-        <span className="absolute  -right-[50] -top-[15]">
+        <span className="absolute  -right-[50px] -top-[15px]">
           <Circle size="460" c="205" color="#37333F" ops=".2" />
         </span>
-        <span className="absolute  -right-[100] -top-[45]">
+        <span className="absolute  -right-[100px] -top-[45px]">
           <Circle size="540" c="235" color="#37333F" ops=".1" />
         </span>
 
@@ -64,7 +68,7 @@ function HomePag2() {
             <PuroleCircle />{" "}
           </span>
           <h1 className="text-[18px] font-medium ">Features</h1>
-          <p className=" text-[10px] text-textcolor leading-6 w-[254]">
+          <p className=" text-[10px] text-textcolor leading-6 w-[254px]">
             Case Size: 42mm Case,
             <br /> Color: Silver, Black, Blue, chamfered brush with mirror
             polish
@@ -96,33 +100,33 @@ function HomePag2() {
       </div>
     </section>
   ) : (
-    // ریسپانسیو در حالت بزرگ تر از موبایل 867 پیکسل
+    // ریسپانسیو در حالت بزرگ تر از موبایل900 پیکسل
 
     <section className="grid grid-cols-12 h-fit mb-10">
       <h1 className="col-span-12 SpaceAGEfont text-[42px] mx-auto my-12">
         Features{" "}
       </h1>
-      <div className="col-span-12 w-[629] h-[629] mt-7 mx-auto relative">
-        <span className="absolute  right-[87] top-[55]">
+      <div className="col-span-12 w-[629px] h-[629px] mt-7 mx-auto relative">
+        <span className="absolute  right-[87px] top-[55px]">
           <Circle size="420" c="185" color="#37333F" r="205" ops=".8" />
         </span>
-        <span className="absolute  right-[80] top-[12]">
+        <span className="absolute  right-[80px] top-[12px]">
           <Circle size="480" c="235" color="#37333F" ops=".5" />
         </span>
-        <span className="absolute  right-[23] -top-[30]">
+        <span className="absolute  right-[23px] -top-[30px]">
           <Circle size="580" c="275" color="#37333F" ops=".2" />
         </span>
-        <span className="absolute  right-[15] -top-[70]">
+        <span className="absolute  right-[15px] -top-[70px]">
           <Circle size="630" c="315" color="#37333F" ops=".1" />
         </span>
 
         <span className="absolute right-0 top-7">
           <BrokeLine1 />
         </span>
-        <span className="absolute -left-[92] top-7">
+        <span className="absolute -left-[92px] top-7">
           <BrokeLine2 />
         </span>
-        <span className="absolute left-0 top-[392.9]">
+        <span className="absolute left-0 top-[392.9px]">
           <BrokeLine3 />
         </span>
         <span className=" absolute max-w-[254] -left-[250]  max-xl:-left-[100] max-xl:top-20 top-8">
@@ -137,7 +141,7 @@ function HomePag2() {
             Custom Strap Engraving
           </p>
         </span>
-        <span className=" absolute  max-w-[224] top-8 -right-[280]  max-xl:-right-[220] max-lg:-right-[120]  max-xl:top-16 max-lg:max-w-[200]">
+        <span className=" absolute  max-w-[224px] top-8 -right-[280px]  max-xl:-right-[220px] max-lg:-right-[120px]  max-xl:top-16 max-lg:max-w-[200px]">
           <h1 className="text-[18px] font-medium ">Features</h1>
           <p className=" text-[10px] text-textcolor leading-6">
             Case Size: 42mm Case,
@@ -153,7 +157,7 @@ function HomePag2() {
             Standard Battery life: 10 years
           </p>
         </span>
-        <span className=" absolute top-[445] -left-[260] max-xl:-left-[100] max-xl:top-[470]">
+        <span className=" absolute top-[445px] -left-[260px] max-xl:-left-[100px] max-xl:top-[470px]">
           <h1 className="text-[18px] font-medium text-right">
             High Quality Components
           </h1>
@@ -173,7 +177,7 @@ function HomePag2() {
           alt="watch2"
           width={3220}
           height={3220}
-          className="w-[500] h-[500] mx-auto max-sm:size-[400px] "
+          className="w-[500px] h-[500px] mx-auto max-sm:size-[400px] "
         />
       </div>
     </section>
