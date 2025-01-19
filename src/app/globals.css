@@ -115,3 +115,18 @@ background: #939393;
 }
 
 
+.spinner {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  border: 14.1px solid;
+  border-color: rgba(114, 92, 255, 0.47);
+  border-right-color: #735cff;
+  animation: spinner-d3wgkg 1s infinite linear;
+}
+
+@keyframes spinner-d3wgkg {
+  to {
+     transform: rotate(1turn);
+  }
+}

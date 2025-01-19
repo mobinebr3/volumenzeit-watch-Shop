@@ -24,7 +24,7 @@ function HomePag2() {
 
   return wind < 900 ? (
     // ریسپانسیو در حالت موبایل
-    <section className="grid grid-cols-12 h-fit bg-white ">
+    <section className="grid grid-cols-12 h-fit bg-white">
       <h1 className="col-span-12 SpaceAGEfont text-[42px] mx-auto my-16">
         Features{" "}
       </h1>
@@ -103,7 +103,7 @@ function HomePag2() {
   ) : (
     // ریسپانسیو در حالت بزرگ تر از موبایل900 پیکسل
 
-    <section className="grid grid-cols-12 h-fit mb-10">
+    <section className="grid grid-cols-12 h-fit mb-10  bg-white">
       <h1 className="col-span-12 SpaceAGEfont text-[42px] mx-auto my-12">
         Features{" "}
       </h1>
@@ -130,7 +130,7 @@ function HomePag2() {
         <span className="absolute left-0 top-[392.9px]">
           <BrokeLine3 />
         </span>
-        <span className=" absolute max-w-[254] -left-[250]  max-xl:-left-[100] max-xl:top-20 top-8">
+        <span className=" absolute max-w-[254px] -left-[250]  max-xl:-left-[100] max-xl:top-20 top-8">
           <h1 className="text-[18px] font-medium ">Individual Style</h1>
           <p className=" text-[10px] text-textcolor leading-6  text-right">
             48 style combinations

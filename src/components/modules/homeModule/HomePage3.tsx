@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Buttonorgi from "@/components/elements/Buttons";
 import Circle from "@/components/icons/Circle";
 import TriangleIcon from "@/components/icons/TriangleIcon";
@@ -34,30 +34,35 @@ function HomePage3() {
         ))}
       </div>
       <div className="my-20 ">
-        <Buttonorgi color="#000000" text={"Design your watch"} />
+        <Buttonorgi
+          color="#000000"
+          text={"Design your watch"}
+          customeClassStyle="px-8"
+        />
       </div>
       <div className=" w-full h-fit flex justify-between relative bg-black max-lg:flex-col max-lg:items-center ">
-        <span className=" z-30  borderTringle right-0  absolute">
-       
+        <span className=" z-30  borderTringle right-0  absolute"></span>
+        <span className="relative   text-left ">
+          <Image
+            src="/images/702e0fe49fea979a1fb9299684156eb2.jpeg"
+            className="-scale-x-100 object-cover  "
+            alt="none"
+            width={426}
+            height={573}
+          />
+          <div className="  from-black bg-gradient-to-l to-[rgb(0,0,0,.1)] w-20 h-full absolute z-20 left-[350px] top-0"></div>
+          <div className="  from-black bg-gradient-to-r to-[rgb(0,0,0,.03)] w-20 h-full absolute z-20 left-0 top-0"></div>
         </span>
-        <span className="relative   text-left "><Image
-          src="/images/702e0fe49fea979a1fb9299684156eb2.jpeg"
-          className="-scale-x-100 object-cover  "
-          alt="none"
-          width={426}
-          height={573}
-        />
-        <div className="  from-black bg-gradient-to-l to-[rgb(0,0,0,.1)] w-20 h-full absolute z-20 left-[350px] top-0"></div>
-        <div className="  from-black bg-gradient-to-r to-[rgb(0,0,0,.03)] w-20 h-full absolute z-20 left-0 top-0"></div>
-        </span>
-        <div className="flex flex-col items-start justify-center *:my-5 leading-7 max-w-[400px] text-start mx-auto max-sm:items-center max-sm:my-20 text-white  ">
-          <h1 className="SpaceAGEfont text-[42px]  max-sm:text-[28px]">Our Mission</h1>
-          <p>
+        <div className="flex flex-col items-start justify-center *:my-5 leading-7 max-w-[400px] text-start mx-auto max-md:items-center max-sm:my-20 text-white  ">
+          <h1 className="SpaceAGEfont text-[42px]  max-sm:text-[28px] ">
+            Our Mission
+          </h1>
+          <p className="max-md:text-center">
             We have invested 6 year of our lifes to invent a new technology of
             production a 3D dials with quality of wristwatch industry. All what
             we need to turn on our imagination on maximum. .
           </p>
-          <p>
+          <p className="max-md:text-center">
             We love Out-of-the-box designs and believe there are many people who
             thinks the same
           </p>
