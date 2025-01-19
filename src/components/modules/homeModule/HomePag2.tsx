@@ -9,7 +9,8 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 function HomePag2() {
-  const [wind, setwind] = useState<number>(window.innerWidth);
+  if (typeof window !== 'undefined'){
+    const [wind, setwind] = useState<number>(window.innerWidth);
 
   useEffect(() => {
     const windowHandler = () => {
@@ -182,6 +183,7 @@ function HomePag2() {
       </div>
     </section>
   );
+  }
 }
 
 export default HomePag2;
