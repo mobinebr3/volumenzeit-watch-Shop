@@ -8,7 +8,7 @@ function WatchCard({ data }: any) {
   const { url }: any = data;
 
   return (
-    <div className="  rounded-lg mt-10 mx-3 drop-shadow-xl bg-slate-100">
+    <div className="  rounded-lg mt-10 mx-3 drop-shadow-xl bg-slate-100 min-w-48">
       <Link href={`products/${_id}`}>
         <div className=" relative ">
 
@@ -17,7 +17,7 @@ function WatchCard({ data }: any) {
             src={url}
             width={254.3}
             height={298.86}
-            className=" bg-slate-100 w-[254px] h-[298px] object-contain    rounded-md"
+            className=" bg-slate-100 w-[254px] h-[298px] object-contain  mx-auto  rounded-md"
           />
           <div className="absolute top-0 left-0 w-full h-full  flex justify-center items-center    hover:opacity-85 opacity-0  bg-purpuleColor rounded-md ease-linear duration-100 ">
             <BasketIcon2 />

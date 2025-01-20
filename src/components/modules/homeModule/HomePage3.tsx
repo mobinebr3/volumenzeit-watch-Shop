@@ -7,6 +7,7 @@ import Image from "next/image";
 import React from "react";
 
 function HomePage3() {
+  if (typeof window !== "undefined") {
   return (
     <div className="bg-purpuleColor h-fit w-full flex justify-center items-center flex-col ">
       <span className="-mt-1 ">
@@ -70,7 +71,7 @@ function HomePage3() {
         </div>
       </div>
     </div>
-  );
+  );}
 }
 
 export default HomePage3;

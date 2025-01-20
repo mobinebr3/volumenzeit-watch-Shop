@@ -130,3 +130,13 @@ background: #939393;
      transform: rotate(1turn);
   }
 }
+
+@media (max-width :390px) {
+  .IMAGE{
+ width:  350px;
+ height:  350px;
+ margin-right: 22px;
+ margin-top: 16px;
+  }
+  
+}

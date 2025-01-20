@@ -98,8 +98,8 @@ function ProductsPage({ data, status, total, curentpage }: ProductState) {
                     <Buttonorgi
                       color="purpuleColor"
                       customeClassStyle=""
-                      variant="faded"
-                      P={10}
+                     
+                    
                       text="Design your watch"
                     />
                   </div>

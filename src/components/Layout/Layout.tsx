@@ -1,19 +1,22 @@
-import React from 'react'
-import Footer from './Footer';
-import Header from './Header';
+import React, { Suspense } from "react";
+import Footer from "./Footer";
+import Header from "./Header";
+import Loader from "../elements/Loader";
 
 function Layout({
-       children,
-     }: Readonly<{
-       children: React.ReactNode;
-     }>) {
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <div className='max-w-screen-2xl mx-auto overscroll-none overflow-hidden'>
-       <Header/>
-       <main className='  max-lg:p-0 w-full bg-white'>{children}</main>
-       <Footer/>
-    </div>
-  )
+    <Suspense fallback={<Loader />}>
+      <div className="max-w-screen-2xl mx-auto overscroll-none overflow-hidden">
+        <Header />
+        <main className="  max-lg:p-0 w-full bg-white">{children}</main>
+        <Footer />
+      </div>
+    </Suspense>
+  );
 }
 
-export default Layout
+export default Layout;

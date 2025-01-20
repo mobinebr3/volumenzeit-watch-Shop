@@ -18,10 +18,11 @@ import BasketIcon from "../icons/BasketIcon";
 import AccountIcon from "../icons/AccountIcon";
 import { usePathname } from "next/navigation";
 
-function Navbarcompnent(): React.JSX.Element {
+function Navbarcompnent() {
+  if (typeof window !== "undefined") {
   const { onOpenChange, isOpen, onClose } = useDisclosure();
   const pathName = usePathname();
-  console.log(pathName);
+  
   const icons = useRef([<AccountIcon />, <BasketIcon />]);
   const links = useRef(["/account/dashboard", "/basket"]);
   return (
@@ -122,7 +123,7 @@ function Navbarcompnent(): React.JSX.Element {
         )}
       </NavbarMenu>
     </Navbar>
-  );
+  );}
 }
 
 export default Navbarcompnent;
