@@ -13,14 +13,17 @@ function Provider({
 }: Readonly<{
   children: React.ReactNode;
 }>): JSX.Element {
-  return (<>
-    <ReduxProvider store={store}>
-     <> <SessionProvider>
-    <>    <Layout>
-         <> <NextUIProvider>{children}</NextUIProvider></>
-        </Layout></>
-      </SessionProvider></>
-    </ReduxProvider></>
+  return (
+    <>
+      <SessionProvider>
+        {" "}
+        <ReduxProvider store={store}>
+          <Layout>
+            <NextUIProvider>{children}</NextUIProvider>
+          </Layout>
+        </ReduxProvider>{" "}
+      </SessionProvider>
+    </>
   );
 }
 

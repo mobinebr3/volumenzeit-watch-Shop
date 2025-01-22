@@ -31,6 +31,7 @@ const getProductsSlice = createSlice({
     },
     setTotal(state, action) {
       state.total = state.total = Math.ceil(+(action.payload?.length / 9));
+    
       state.curentpage = 1;
     },
   },

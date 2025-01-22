@@ -1,7 +1,7 @@
 import React from "react";
 
-function page() {
+function pageNotfound() {
   return <h1 className="">NOtfund</h1>;
 }
 
-export default page;
+export default pageNotfound;

@@ -3,7 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import User from "@/models/User";
 import ConnecttoDB from "@/utils/ConnectToDB";
 import { verifyPassword } from "@/utils/hashpassvaidtion";
-import type { NextAuthOptions } from "next-auth";
+
 
 
 

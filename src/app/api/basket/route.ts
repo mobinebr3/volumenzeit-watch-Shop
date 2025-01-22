@@ -6,17 +6,16 @@ import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
 export async function POST(req: any) {
-  console.log('post')
+  console.log("post");
   try {
     await ConnecttoDB();
-    const { price, off, url, strap, title } = await req.json();
-    if (!price || !off || !url || !strap || !title) {
+    const { price, off, url, strap, title ,_id} = await req.json();
+    if (!price || !off || !url || !strap || !title ||!_id) {
       return NextResponse.json({ error: "invalid Data" }, { status: 400 });
     }
-    const session :any = await getServerSession(req);
- 
-console.log(session)
-    const user:any = await User.findOne({email: session.user.email})
+    const session: any = await getServerSession(req);
+
+    const user: any = await User.findOne({ email: session.user.email });
     if (!user) {
       return NextResponse.json(
         { error: "Unauthorized - Please login first" },
@@ -28,8 +27,9 @@ console.log(session)
       off,
       url,
       strap,
-      userId : new Types.ObjectId(user?._id),
+      userId: new Types.ObjectId(user?._id),
       title,
+      productId: new Types.ObjectId(_id)
     });
     if (!order) {
       return NextResponse.json(
@@ -38,7 +38,7 @@ console.log(session)
       );
     }
     return NextResponse.json({
-      message: "Add product to basket is succesfully",
+      message: "Add product to cart is succesfully",
     });
   } catch (error) {
     return NextResponse.json(
@@ -64,26 +64,40 @@ console.log(session)
 //   } catch (error) {}
 // }
 
-
-
-
-export async function GET() {
+export async function GET(req: any) {
   try {
     await ConnecttoDB();
-   
 
-    const productsBasket = await Basket.find({ isOrder: false })
+  
+    const session: any = await getServerSession(req);
 
+    const user: any = await User.findOne({ email: session.user.email });
+    if (!user) {
+      return NextResponse.json(
+        { error: "Unauthorized - Please login first" },
+        { status: 401 }
+      );
+    }
+    const productsBasket = await Basket.find({ isOrder: false });
     if (!productsBasket) {
       return NextResponse.json(
         { error: "connot get products" },
         { status: 401 }
       );
     }
-    return NextResponse.json({ data: productsBasket }, { status: 200 });
+
+
+
+    return NextResponse.json(
+      {
+        data: productsBasket.filter(
+          (i: any) => String(i.userId) === String(user._id)
+        ),
+      },
+      { status: 200 }
+    );
   } catch (err) {
-    
-    console.log(err)
-    return NextResponse.json({ err:err }, { status: 500 });
+
+    return NextResponse.json({ err: err }, { status: 500 });
   }
 }

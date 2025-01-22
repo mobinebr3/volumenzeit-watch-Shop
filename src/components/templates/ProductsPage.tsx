@@ -1,11 +1,11 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { AppDispatch, RootState } from "@/store/store";
-import { useDispatch, useSelector } from "react-redux";
-import { changePage } from "@/store/redux/products";
 
+import { AppDispatch } from "@/store/store";
+import { useDispatch } from "react-redux";
+import { changePage } from "@/store/redux/products";
+import { SlArrowUp } from "react-icons/sl";
 import { Watch } from "react-loader-spinner";
-import { ProductData, ProductState } from "@/Types/typesw";
+import { ProductState } from "@/Types/typesw";
 import WatchCard from "../modules/WatchCard";
 import {
   Drawer,
@@ -16,13 +16,16 @@ import {
 import Buttonorgi from "../elements/Buttons";
 import PorductFilterbar from "../modules/PorductFilterbar";
 import HeaderProducts from "../modules/HeaderProducts";
+import { useState } from "react";
 
 function ProductsPage({ data, status, total, curentpage }: ProductState) {
+  const [pages , setPages] = useState(curentpage)
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const dispatch = useDispatch<AppDispatch>();
 
   const changePageHandler = (page: number) => {
-    dispatch(changePage(page));
+    dispatch(changePage(page))
+    setPages(page)
   };
   return (
     <>
@@ -32,10 +35,10 @@ function ProductsPage({ data, status, total, curentpage }: ProductState) {
           <HeaderProducts data={data} />
           <div className="grid grid-cols-12 ">
             <button
-              className="lg:hidden bg-[#F9FAFE] w-32 col-span-6  mx-auto  h-10  rounded border-1 row-span-full mt-5"
+              className="lg:hidden col-span-6  mx-auto  SpaceAGEfont text-xl   row-span-full mt-5 flex items-center "
               onClick={onOpen}
             >
-              filter
+              <p className="mr-2"> filter</p> <SlArrowUp />
             </button>
             <button
               className=" bg-[#F9FAFE] w-32 col-span-8 max-lg: mx-auto  h-10 hidden rounded border-1  mt-5"
@@ -43,7 +46,7 @@ function ProductsPage({ data, status, total, curentpage }: ProductState) {
             >
               Sort
             </button>
-            <div className="col-span-4 w-full h-fitflex justify-end  max-lg:hidden">
+            <div className="col-span-4 w-full sca h-fitflex justify-end max-lg:hidden">
               <PorductFilterbar />
               <Drawer
                 isOpen={isOpen}
@@ -51,9 +54,12 @@ function ProductsPage({ data, status, total, curentpage }: ProductState) {
                 onOpenChange={onOpenChange}
                 size="2xl"
                 closeButton="lg"
+                classNames={{
+                  closeButton: "text-2xl  hover:text-black ",
+                }}
               >
                 <DrawerContent>
-                  <PorductFilterbar />
+                  <PorductFilterbar onClose={onClose} />
                 </DrawerContent>
               </Drawer>
             </div>
@@ -77,7 +83,7 @@ function ProductsPage({ data, status, total, curentpage }: ProductState) {
                 <div className=" col-span-8 max-lg:col-span-full flex items-center flex-col mt-20">
                   <div className=" flex flex-wrap  justify-evenly">
                     {data
-                      ?.slice((curentpage - 1) * 9, curentpage * 9)
+                      ?.slice((pages - 1) * 9, pages * 9)
                       ?.map((i: any) => (
                         <WatchCard key={i._id} data={i} />
                       ))}
@@ -91,6 +97,7 @@ function ProductsPage({ data, status, total, curentpage }: ProductState) {
                         cursor: "bg-purpuleColor text-[#fff] rounded",
                         item: " rounded  ",
                       }}
+                      
                       page={curentpage}
                       onChange={changePageHandler}
                       total={total}
@@ -98,8 +105,6 @@ function ProductsPage({ data, status, total, curentpage }: ProductState) {
                     <Buttonorgi
                       color="purpuleColor"
                       customeClassStyle=""
-                     
-                    
                       text="Design your watch"
                     />
                   </div>

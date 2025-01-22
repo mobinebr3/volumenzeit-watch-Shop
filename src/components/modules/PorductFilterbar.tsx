@@ -1,15 +1,16 @@
 " use client";
 import { FliterState } from "@/Types/typesw";
-import { Button, Slider, SliderValue, useDisclosure } from "@nextui-org/react";
+import { Slider, SliderValue } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 
 import { useState } from "react";
+
 
 export type SliderStepMarks = {
   value: number;
   label: string;
 }[];
-function PorductFilterbar() {
+function PorductFilterbar({onClose}:any) {
   const router = useRouter();
   const [select, setSelect] = useState<FliterState>({
     search: "",
@@ -23,29 +24,34 @@ function PorductFilterbar() {
     const query: Record<string, string> = {};
     for (const key in select) {
       if (Array.isArray(select[key as keyof FliterState])) {
-        query[key] = (select[key as keyof FliterState] as number[]).join(",");
+     query[key] = (select[key as keyof FliterState] as number[]).join(",");
       } else {
-        query[key] = String(select[key as keyof FliterState]);
+        if(select[key as keyof FliterState] !=='' ) query[key] = String(select[key as keyof FliterState])
       }
     }
     const queryString = new URLSearchParams(query).toString();
     router.push(`?${queryString}`);
+    onClose? onClose():null
   };
   return (
-    <section className="w-full px-10  pt-5  *:font-semibold *:my-5 bg-bgcolor mb-12 mr-16 h-fit">
-      <div>
-        <label htmlFor="search" className="">
-          Search{" "}
-        </label>
+    <section className="w-full px-10  py-5  shadow-2xl *:font-semibold *:my-5 bg-bgcolor mb-12 mr-16 h-fit">
+      <div className="flex items-center ">
         <input
           id="search"
           type="text"
-          className="rounded w-full h-9 focus:outline-none px-4 my-5"
+          className="rounded w-full p-3 focus:outline-none px-4 my-5"
           placeholder="type here..."
           value={select.search}
           onChange={(e) => setSelect({ ...select, search: e.target.value })}
-        />
+        />{" "}
+        <h1
+          onClick={filterhandler}
+          className="border bg-bgcolor w-fit p-2 scale-125 shadow-sm px-4 SpaceAGEfont font-bold text-lg rounded-lg "
+        >
+          Serach
+        </h1>
       </div>
+
       <hr />
       <div>
         <p>select product</p>
@@ -89,12 +95,10 @@ function PorductFilterbar() {
             currency: "USD",
             roundingPriority: "morePrecision",
           }}
-   
           label=" "
           onChange={(value: SliderValue) =>
             setSelect({ ...select, price: value })
           }
-         
           maxValue={5000}
           minValue={0}
           size="lg"
@@ -103,52 +107,56 @@ function PorductFilterbar() {
       </div>
       <hr />
       <div>
-        <p>case color</p>
-        <ul className="flex *:mr-1 mt-5">
+        <p>Case color</p>
+        <ul className="flex *:mr-1 mt-5 *:ease-linear *:duration-200">
           <li
             className={`size-8 rounded-lg bg-[#55555] from-[#555555] from-30% bg-gradient-to-bl to-[#0A0A0A] ${
               select.caseColor === "black" ? "outline" : ""
             }`}
             onClick={() => {
-              setSelect({ ...select, caseColor: "black" });
+              setSelect({
+                ...select,
+                caseColor: select.caseColor === "black" ? "" : "black",
+              });
             }}
           ></li>
           <li
             className={` size-8 rounded-lg bg-[#E3E3E3] from-[#E3E3E3] from-30% bg-gradient-to-bl to-[#7B838F] ${
-              select.caseColor === "blue" ? "outline" : ""
+              select.caseColor === "gray" ? "outline" : ""
             }`}
             onClick={() => {
-              setSelect({ ...select, caseColor: "blue" });
+              setSelect({
+                ...select,
+                caseColor: select.caseColor === "gray" ? "" : "gray",
+              });
             }}
           ></li>
           <li
             className={` size-8 rounded-lg bg-[#58B2CE] from-[#58B2CE] from-30% bg-gradient-to-bl to-[#023C96] ${
-              select.caseColor === "gray" ? "outline" : ""
+              select.caseColor === "blue" ? "outline" : ""
             }`}
             onClick={() => {
-              setSelect({ ...select, caseColor: "gray" });
+              setSelect({
+                ...select,
+                caseColor: select.caseColor === "blue" ? "" : "blue",
+              });
             }}
           ></li>
-          <li
-            className={` size-8 rounded-lg bg-slate-200 text-3xl `}
-            onClick={() => {
-              setSelect({ ...select, caseColor: "" });
-            }}
-          >
-            X
-          </li>
         </ul>
       </div>
       <hr />
       <div>
-        <p>filter by color</p>
-        <ul className="flex *:mr-1 mt-5 w-[190]">
+        <p>Color</p>
+        <ul className="flex *:mr-1 mt-5 w-[190] *:ease-linear *:duration-150">
           <li
             className={` size-8 rounded-lg bg-[#D39138] from-[#D39138] from-30% bg-gradient-to-bl to-[#B95371]  ${
               select.Color === "orange" ? "outline" : ""
             } `}
             onClick={() => {
-              setSelect({ ...select, Color: "orange" });
+              setSelect({
+                ...select,
+                Color: select.Color === "orange" ? "" : "orange",
+              });
             }}
           ></li>
           <li
@@ -156,7 +164,11 @@ function PorductFilterbar() {
               select.Color === "green-to-voilt" ? "outline" : ""
             } `}
             onClick={() => {
-              setSelect({ ...select, Color: "green-to-voilt" });
+              setSelect({
+                ...select,
+                Color:
+                  select.Color === "green-to-voilt" ? "" : "green-to-voilt",
+              });
             }}
           ></li>
           <li
@@ -164,32 +176,25 @@ function PorductFilterbar() {
               select.Color === "blue-to-violt" ? "outline" : ""
             } `}
             onClick={() => {
-              setSelect({ ...select, Color: "blue-to-violt" });
+              setSelect({
+                ...select,
+                Color: select.Color === "blue-to-violt" ? "" : "blue-to-violt",
+              });
             }}
           ></li>
           <li
-            className={` size-8 rounded-lg bg-[#707885] from-[#707885] from-30% bg-gradient-to-bl to-[#363636]  ${
+            className={` size-8 rounded-lg bg-[#707885] from-[#707885] from-30% bg-gradient-to-bl to-[#363636]   ${
               select.Color === "gray" ? "outline" : ""
             } `}
             onClick={() => {
-              setSelect({ ...select, Color: "gray" });
-            }}
-          ></li>{" "}
-          <li
-            className=" size-8 rounded-lg  bg-slate-400  "
-            onClick={() => {
-              setSelect({ ...select, Color: "" });
+              setSelect({
+                ...select,
+                Color: select.Color === "gray" ? "" : "gray",
+              });
             }}
           ></li>{" "}
         </ul>
       </div>
-      <Button
-        className="bg-purpuleColor text-white px-12 py-7 rounded-md border-b-3  border-white w-[190]"
-        onClick={filterhandler}
-      >
-        {" "}
-        Apply filters
-      </Button>
     </section>
   );
 }

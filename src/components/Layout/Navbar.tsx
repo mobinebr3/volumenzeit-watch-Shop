@@ -26,7 +26,7 @@ function Navbarcompnent() {
   const icons = useRef([<AccountIcon />, <BasketIcon />]);
   const links = useRef(["/account/dashboard", "/basket"]);
   return (
-    <Navbar isMenuOpen={isOpen} onMenuOpenChange={onOpenChange} maxWidth="full">
+    <Navbar isMenuOpen={isOpen} onMenuOpenChange={onOpenChange} maxWidth="full" className="py-2 fixed shadow-md">
       <NavbarContent className="max-xl:ml-1 ml-16" justify="start">
         <Link href={"/"}>
           {" "}

@@ -9,7 +9,7 @@ import Box from "../icons/Box";
 import TaxIcon from "../icons/TaxIcon";
 import { BasketData } from "@/Types/typesw";
 
-function BasketPage({ userid }: any) {
+function BasketPage() {
   const [product, setProdct] = useState<{ status: number; data: BasketData[] }>(
     {
       status: 0,
@@ -52,9 +52,7 @@ function BasketPage({ userid }: any) {
     <section>
       <div className="max-w-96 px-4 pt-5 bg-white rounded-xl ml-auto">
         {product?.status === 200 &&
-          product.data
-            .filter((i: any) => i.userId === userid)
-            .map((i: any) => (
+          product.data .map((i: any) => (
               <div className=" my-4 relative" key={i._id}>
                 <span
                   className=" absolute  right-0 "

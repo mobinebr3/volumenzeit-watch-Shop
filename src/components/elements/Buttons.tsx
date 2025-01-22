@@ -1,13 +1,14 @@
-"use client";
+'use client'
 import { Button } from "@nextui-org/react";
 
 function Buttonorgi({
   text,
   color = "purpuleColor",
   variant = "flat",
-
+isloading=false ,
   customeClassStyle = "",
   onClick,
+  isDisable=false
 }: {
   text: string;
   color?: string;
@@ -20,12 +21,15 @@ function Buttonorgi({
     | "shadow"
     | "ghost"
     | undefined;
-
+    isloading?:boolean ;
+    isDisable?:boolean ;
   customeClassStyle?: string;
   onClick?: any;
 }) {
   return (
     <Button
+    isLoading={isloading}
+    isDisabled={isDisable}
       onPress={onClick}
       variant={variant}
       style={{ backgroundColor: color, border: color }}

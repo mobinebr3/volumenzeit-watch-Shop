@@ -10,6 +10,7 @@ const Product = new Schema({
   strap: { require: true, type: String },
   quantity: { type: Number, default: 1, require: true },
   isOrder: { type: Boolean, default: false },
+  productId:{type:Schema.Types.ObjectId ,ref:'Products' },
   userId: {
     type: Schema.Types.ObjectId,
     ref: "User",

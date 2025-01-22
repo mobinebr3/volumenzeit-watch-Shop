@@ -22,7 +22,9 @@ const product = new Schema({
   details: {
     type: [],
   },
- 
+ figure :{
+  type:{String} ,
+ },
   off: {
     type: String,
     default: 0,
