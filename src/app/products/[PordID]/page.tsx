@@ -1,14 +1,17 @@
 import DetailPage from "@/components/templates/DetailPage";
 import { ProductfetchType } from "@/Types/typesw";
+import { redirect } from "next/navigation";
 
 async function Details({ params }: { params: Promise<{ PordID: number }> }) {
   const { PordID } = await params;
-  const res: any = await fetch(
-    `${process.env.NEXTAUTH_URL}/api/products/details/${PordID}`
-  );
-  if (!res) {
-    return <h1>somting worng</h1>;
-  }
+  try {
+    const res: any = await fetch(
+      `${process.env.NEXTAUTH_URL}/api/products/details/${PordID}`
+    );
+    if (!res) {
+      return <h1>somting worng</h1>;
+    }
+ 
 
   const { data }: ProductfetchType = await res.json();
 
@@ -23,7 +26,9 @@ async function Details({ params }: { params: Promise<{ PordID: number }> }) {
       </div>
       <DetailPage data={data} />
     </>
-  );
+  ); } catch (error) {
+    redirect('/error')
+  }
 }
 
 export default Details;
