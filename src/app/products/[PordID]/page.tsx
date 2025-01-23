@@ -1,7 +1,7 @@
 import Loader from "@/components/elements/Loader";
 import DetailPage from "@/components/templates/DetailPage";
 import { ProductfetchType } from "@/Types/typesw";
-import { redirect } from "next/navigation";
+
 import { Suspense } from "react";
 
 async function Details({ params }: { params: Promise<{ PordID: number }> }) {
@@ -29,7 +29,7 @@ async function Details({ params }: { params: Promise<{ PordID: number }> }) {
     </Suspense>
     </>
   ); } catch (error) {
-    redirect('error')
+   console.log(error)
   }
   
 }
