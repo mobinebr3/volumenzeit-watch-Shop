@@ -4,12 +4,14 @@ import { ProductfetchType } from "@/Types/typesw";
 
 import { Suspense } from "react";
 
-async function Details({ params }: { params:{ PordID: string } }) {
+export default async function Details({params}:any) {
+  const id =(await params).PordID
+
   try {
-    const { PordID } = params;
+  
 
     const res= await fetch(
-      `${process.env.NEXTAUTH_URL}/api/products/details/${PordID}`
+      `${process.env.NEXTAUTH_URL}/api/products/details/${id}`
     );
 
     if(!res.ok)return <h1>somthing error in connection</h1>
@@ -34,4 +36,3 @@ async function Details({ params }: { params:{ PordID: string } }) {
   
 }
 
-export default Details;
