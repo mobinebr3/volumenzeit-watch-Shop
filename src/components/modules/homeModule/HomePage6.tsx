@@ -28,6 +28,7 @@ function HomePage6() {
           />
           <Buttonorgi
             text="Sign Up"
+            
             customeClassStyle="px-7 hover:text-black mx-auto mt-10 col-span-full  bg-black border-b-black hover:"
           />
         </form>

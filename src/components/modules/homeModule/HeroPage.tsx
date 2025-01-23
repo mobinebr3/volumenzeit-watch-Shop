@@ -9,7 +9,7 @@ import Buttonorgi from "@/components/elements/Buttons";
 import { FiLinkedin } from "react-icons/fi";
 
 import { useRouter } from "next/navigation";
-import Loader from "@/components/elements/Loader";
+
 
 function HeroPage() {
   const router = useRouter();

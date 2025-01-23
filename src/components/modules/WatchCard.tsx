@@ -1,16 +1,17 @@
 "use client";
 import Image from "next/image";
 import { BasketIcon2 } from "../icons/BasketIcon";
-import Link from "next/link";
+
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 function WatchCard({ data }: any) {
   const { title, price, off, figure, _id, url } = data;
  const router = useRouter()
-
+console.log(_id)
   return (
     <div className="  rounded-lg mt-10 mx-3 drop-shadow-xl bg-slate-100 min-w-48">
-      <div onClick={()=>router.push(`products/${_id}`)}>
+      <Link href={`products/Details/${_id}`} target="_blank">
         <div className=" relative ">
 
           <Image
@@ -29,7 +30,7 @@ function WatchCard({ data }: any) {
           <p className="text-textcolor"> </p>
           <p className=" mt-4 text-purpuleColor mb-2 t">${price}</p>
         </div>
-      </div>
+      </Link>
     </div>
   );
 }
