@@ -4,7 +4,7 @@ import { ProductfetchType } from "@/Types/typesw";
 
 import { Suspense } from "react";
 
-async function Details({ params }: { params: Promise<{ PordID: number }> }) {
+async function Details({ params }: { params: Promise<{ PordID: string }> }) {
   try {
     const { PordID } = await params;
 
@@ -23,12 +23,13 @@ async function Details({ params }: { params: Promise<{ PordID: number }> }) {
           Details
         </h1>
       </div>
-    {/* <Suspense fallback={<Loader />} >
+    <Suspense fallback={<Loader />} >
    
       <DetailPage data={data} />
-    </Suspense> */}
+    </Suspense>
     </>
   ); } catch (error:any) {
+    console.log(error)
    return <code>error:{error}</code>
   }
   
