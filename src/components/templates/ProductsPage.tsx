@@ -4,7 +4,7 @@ import { AppDispatch } from "@/store/store";
 import { useDispatch } from "react-redux";
 import { changePage } from "@/store/redux/products";
 import { SlArrowUp } from "react-icons/sl";
-import { Watch } from "react-loader-spinner";
+
 import { ProductState } from "@/Types/typesw";
 import WatchCard from "../modules/WatchCard";
 import {
@@ -17,15 +17,16 @@ import Buttonorgi from "../elements/Buttons";
 import PorductFilterbar from "../modules/PorductFilterbar";
 import HeaderProducts from "../modules/HeaderProducts";
 import { useState } from "react";
+import Loader from "../elements/Loader";
 
 function ProductsPage({ data, status, total, curentpage }: ProductState) {
-  const [pages , setPages] = useState(curentpage)
+  const [pages, setPages] = useState(curentpage);
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const dispatch = useDispatch<AppDispatch>();
 
   const changePageHandler = (page: number) => {
-    dispatch(changePage(page))
-    setPages(page)
+    dispatch(changePage(page));
+    setPages(page);
   };
   return (
     <>
@@ -63,30 +64,16 @@ function ProductsPage({ data, status, total, curentpage }: ProductState) {
                 </DrawerContent>
               </Drawer>
             </div>
-            {status === "loading" && (
-              <div className="grid content-center mx-auto col-span-full">
-                {" "}
-                <Watch
-                  visible={true}
-                  height="200"
-                  width="200"
-                  radius="45"
-                  color="#8f7dff"
-                  ariaLabel="watch-loading"
-                />
-              </div>
-            )}
+            {status === "loading" && <Loader />}
             {status === "succeeded" &&
               (!data?.length ? (
                 <h1>cant Find any Product</h1>
               ) : (
                 <div className=" col-span-8 max-lg:col-span-full flex items-center flex-col mt-20">
                   <div className=" flex flex-wrap  justify-evenly">
-                    {data
-                      ?.slice((pages - 1) * 9, pages * 9)
-                      ?.map((i: any) => (
-                        <WatchCard key={i._id} data={i} />
-                      ))}
+                    {data?.slice((pages - 1) * 9, pages * 9)?.map((i: any) => (
+                      <WatchCard key={i._id} data={i} />
+                    ))}
                     {}
                   </div>
                   <div className=" my-10 flex w-full px-20 justify-between items-center max-sm:flex-col max-sm:*:mt-5">
@@ -97,7 +84,6 @@ function ProductsPage({ data, status, total, curentpage }: ProductState) {
                         cursor: "bg-purpuleColor text-[#fff] rounded",
                         item: " rounded  ",
                       }}
-                      
                       page={curentpage}
                       onChange={changePageHandler}
                       total={total}
