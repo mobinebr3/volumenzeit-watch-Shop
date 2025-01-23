@@ -6,9 +6,10 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 function WatchCard({ data }: any) {
+if(typeof window !=='undefined'){
   const { title, price, off, figure, _id, url } = data;
- const router = useRouter()
-console.log(_id)
+
+
   return (
     <div className="  rounded-lg mt-10 mx-3 drop-shadow-xl bg-slate-100 min-w-48">
       <Link href={`products/Details/${_id}`} target="_blank">
@@ -32,7 +33,8 @@ console.log(_id)
         </div>
       </Link>
     </div>
-  );
+  )
+}
 }
 
 export default WatchCard;
