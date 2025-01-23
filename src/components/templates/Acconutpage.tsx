@@ -22,14 +22,14 @@ function Acconutpage({ data }: { data: UserInfo }) {
       </div>
 
       <div className=" w-full  px-5  py-10  max-lg:mx-auto">
-        <div className=" h-fit max-w-[1110] mx-auto">
-          <div className=" my-8  px-10 max-md:px-5 mx-auto max-w-[952] ">
+        <div className=" h-fit max-w-[1110px] mx-auto">
+          <div className=" my-8  px-10 max-md:px-5 mx-auto max-w-[952px] ">
             <ul className="flex flex-row  justify-evenly *:text-xl max-md:flex-col text-center *:w-full *:my-3 *:font-semibold  *:text-blackcolor   border-[#EAECF5]">
               {accountpanl.map((i) => (
                 <React.Fragment key={i.id}>
                   {query === i.path ? (
                     <Link href={i.path}>
-                      <li className=" border-b-5 shadow-2xl  py-2 border-purpuleColor">
+                      <li className=" border-b-5   py-2 border-purpuleColor">
                         {i.titile}
                       </li>{" "}
                     </Link>
@@ -59,8 +59,8 @@ function Acconutpage({ data }: { data: UserInfo }) {
               ) : null}
             </ul>{" "}
             <div>
-              <h2 className=" text-[42px] text-center my-10  max-md:text-[38px]">
-                hey,{data.name}
+              <h2 className=" text-[42px] text-center my-10  max-md:text-[38px] border-b-3 max-w-fit mx-auto">
+                Hey,{data.name}
               </h2>
               <p className="text-center text-textcolor ">
                 Welcome to your dashboard, your one-stop-shop for all your
@@ -80,7 +80,7 @@ function Acconutpage({ data }: { data: UserInfo }) {
           )}
           {query === "/account/admin" && <Adminpanel />}
           {query === "/account/edite" && <AdminEditePage />}
-          {query === "/account/basket" && <BasketPage userid={data._id} />}
+          {query === "/account/basket" && <BasketPage  />}
         </div>
       </div>
     </section>

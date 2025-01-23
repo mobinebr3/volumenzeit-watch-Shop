@@ -1,7 +1,7 @@
 "use client";
 
 import {
-  restform,
+
   submitData,
   updateField,
 } from "@/store/redux/Formaddproducts";
@@ -15,6 +15,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { CiEdit } from "react-icons/ci";
 
+import { FaAngleDown } from "react-icons/fa";
+
 function Adminpanel() {
   const [select, setSelect] = useState<{
     caseColor: "black" | "gray" | "blue";
@@ -25,7 +27,7 @@ function Adminpanel() {
   });
   const dispatch = useDispatch<AppDispatch>();
   const Form = useSelector((state: RootState) => state.form);
-  const [isShow, setShow] = useState(false);
+  const [isShow, setShow] = useState(true);
   const { status, message, error } = useSelector(
     (state: RootState) => state.form
   );
@@ -109,19 +111,19 @@ function Adminpanel() {
           onChange={(e: any) => handelingInputChangs("off", e.target.value)}
         />
         <div>
-          <button onClick={() => setShow(!isShow)}>
-            {" "}
-            <p>select Image</p>
+          <button onClick={() => setShow(!isShow)} className="flex items-center rounded-md bg-itembgcolorone p-4 shadow-md">
+    
+            <b>select Image</b>  <FaAngleDown  className={`${isShow?'rotate-180':''} ease-linear duration-200`}  size={20}/>
           </button>
-          <div className={`${isShow ? "hidden" : ""}`}>
+          <div className={`${isShow ? "hidden" : ""} ease-linear duration-200`}>
             <ul
-              className="flex flex-wrap *:mx-4 *:mt-5"
+              className={`flex flex-wrap *:mx-2 *:max-sm:mx-1 *:mt-5`}
               onClick={(e: any) => handelingInputChangs("url", e.target.alt)}
             >
               <li id="UrbanEgale">
                 <Image
                   src="/watch/UrbanEgale.png"
-                  className="w-[254px]  h-[298px] object-contain bg-slate-200 rounded-md"
+                  className={`w-[254px]  h-[298px] max-lg:h-[200px] max-lg:w-[170px]  max-sm:w-[80px] max-sm:h-[100px] object-cover bg-slate-200 rounded-md ${Form.url=== 'UrbanEgale' &&' rounded-md border-y-3 border-purpuleColor ease-linear duration-100'}`}
                   alt="UrbanEgale"
                   width={254}
                   height={298}
@@ -130,7 +132,7 @@ function Adminpanel() {
               <li id="VectorVile">
                 <Image
                   src="/watch/VectorVile.png"
-                  className="w-[254px]  h-[298px] object-contain bg-slate-200 rounded-md"
+                  className={`w-[254px]  h-[298px]   max-lg:h-[200px] max-lg:w-[170px]  max-sm:w-[86px] max-sm:h-[100px] object-cover bg-slate-200 rounded-md ${Form.url=== 'VectorVile'&&' rounded-md border-y-3 border-purpuleColor ease-linear duration-100'}`}
                   alt="VectorVile"
                   width={254}
                   height={298}
@@ -140,7 +142,7 @@ function Adminpanel() {
                 <Image
                   src="/watch/love.png"
                   alt="love"
-                  className="w-[254px]  h-[298px] object-contain bg-slate-200 rounded-md"
+                  className={`w-[254px]  h-[298px]  max-lg:h-[200px] max-lg:w-[170px]  max-sm:w-[80px] max-sm:h-[100px] object-cover bg-slate-200 rounded-md ${Form.url=== 'love'&&' rounded-md border-y-3 border-purpuleColor ease-linear duration-100'}`}
                   width={254}
                   height={298}
                 />
@@ -148,7 +150,7 @@ function Adminpanel() {
               <li id="RisinHigh">
                 <Image
                   src="/watch/RisinHigh.png"
-                  className="w-[254px]  h-[298px] object-contain bg-slate-200 rounded-md"
+                  className={`w-[254px]  h-[298px]  max-lg:h-[200px] max-lg:w-[170px] max-sm:w-[80px] max-sm:h-[100px]  object-cover bg-slate-200 rounded-md ${Form.url==='RisinHigh' &&' rounded-md border-y-3 border-purpuleColor ease-linear duration-100'}`}
                   alt="RisinHigh"
                   width={254}
                   height={298}
@@ -156,11 +158,11 @@ function Adminpanel() {
               </li>
             </ul>
           </div>
-          <div>
-            <p>filter by color</p>
+          <div className="mt-5">
+            <p>Color:</p>
             <ul className="flex *:mr-1 mt-5 w-[190]">
               <li
-                className={` size-8 rounded-lg bg-[#D39138] from-[#D39138] from-30% bg-gradient-to-bl to-[#B95371]  ${
+                className={` size-8 rounded-lg bg-[#D39138] from-[#D39138] from-30% bg-gradient-to-bl to-[#B95371] ease-linear duration-100 ${
                   select.dialColor === "orange" ? "outline" : ""
                 } `}
                 onClick={() => {
@@ -168,7 +170,7 @@ function Adminpanel() {
                 }}
               ></li>
               <li
-                className={` size-8 rounded-lg bg-[#2D9B87] from-[#2D9B87] from-30% bg-gradient-to-bl to-[#AF29CB]  ${
+                className={` size-8 rounded-lg bg-[#2D9B87] from-[#2D9B87] from-30% bg-gradient-to-bl to-[#AF29CB] ease-linear duration-150 ${
                   select.dialColor === "green-to-voilt" ? "outline" : ""
                 } `}
                 onClick={() => {
@@ -176,7 +178,7 @@ function Adminpanel() {
                 }}
               ></li>
               <li
-                className={` size-8 rounded-lg bg-[#2184CE] from-[#2184CE] from-30% bg-gradient-to-bl to-[#9020AD]  ${
+                className={` size-8 rounded-lg bg-[#2184CE] from-[#2184CE] from-30% bg-gradient-to-bl to-[#9020AD] ease-linear duration-100 ${
                   select.dialColor === "blue-to-violt" ? "outline" : ""
                 } `}
                 onClick={() => {
@@ -184,7 +186,7 @@ function Adminpanel() {
                 }}
               ></li>
               <li
-                className={` size-8 rounded-lg bg-[#707885] from-[#707885] from-30% bg-gradient-to-bl to-[#363636]  ${
+                className={` size-8 rounded-lg bg-[#707885] from-[#707885] from-30% bg-gradient-to-bl to-[#363636] ease-linear duration-100 ${
                   select.dialColor === "gray" ? "outline" : ""
                 } `}
                 onClick={() => {
@@ -198,7 +200,7 @@ function Adminpanel() {
             <p>case color</p>
             <ul className="flex *:mr-1 mt-5">
               <li
-                className={`size-8 rounded-lg bg-[#55555] from-[#555555] from-30% bg-gradient-to-bl to-[#0A0A0A] ${
+                className={`size-8 rounded-lg bg-[#55555] from-[#555555] from-30% bg-gradient-to-bl to-[#0A0A0A] ease-linear duration-100 ${
                   select.caseColor === "black" ? "outline" : ""
                 }`}
                 onClick={() => {
@@ -206,7 +208,7 @@ function Adminpanel() {
                 }}
               ></li>
               <li
-                className={` size-8 rounded-lg bg-[#E3E3E3] from-[#E3E3E3] from-30% bg-gradient-to-bl to-[#7B838F] ${
+                className={` size-8 rounded-lg bg-[#E3E3E3] from-[#E3E3E3] from-30% bg-gradient-to-bl to-[#7B838F] ease-linear duration-100  ${
                   select.caseColor === "blue" ? "outline" : ""
                 }`}
                 onClick={() => {
@@ -214,7 +216,7 @@ function Adminpanel() {
                 }}
               ></li>
               <li
-                className={` size-8 rounded-lg bg-[#58B2CE] from-[#58B2CE] from-30% bg-gradient-to-bl to-[#023C96] ${
+                className={` size-8 rounded-lg bg-[#58B2CE] from-[#58B2CE] from-30% bg-gradient-to-bl to-[#023C96] ease-linear duration-100 ${
                   select.caseColor === "gray" ? "outline" : ""
                 }`}
                 onClick={() => {

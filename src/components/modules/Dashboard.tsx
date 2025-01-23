@@ -3,7 +3,7 @@ import Buttonorgi from "../elements/Buttons";
 
 function Dashboard({ email, name }: any) {
   return (
-    <div className="*:mx-auto *:text-left *:bg-white *:max-w-[1110] *:px-[79] *:py-10 *:my-5 ">
+    <div className="*:mx-auto *:text-left *:bg-white *:max-w-[1110px] *:px-[79px] *:py-10 *:my-5 ">
       <Dashboardcontent
         data={null}
         titile1="Recent Orders"
@@ -23,7 +23,7 @@ function Dashboard({ email, name }: any) {
         subtitle="You have not yet added address."
       />
 
-      <Buttonorgi text="Add New"  P={7} customeClassStyle="" variant="flat" color="#735CFF" />
+      <Buttonorgi text="Add New addres"   customeClassStyle=""  color="#735CFF" />
     </div>
   );
 }
