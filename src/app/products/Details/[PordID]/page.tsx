@@ -23,13 +23,13 @@ async function Details({ params }: { params: Promise<{ PordID: number }> }) {
           Details
         </h1>
       </div>
-    <Suspense fallback={<Loader />} >
+    {/* <Suspense fallback={<Loader />} >
    
       <DetailPage data={data} />
-    </Suspense>
+    </Suspense> */}
     </>
   ); } catch (error:any) {
-   return <h1>error:{error}</h1>
+   return <code>error:{error}</code>
   }
   
 }

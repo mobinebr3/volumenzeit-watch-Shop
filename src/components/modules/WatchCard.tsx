@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { BasketIcon2 } from "../icons/BasketIcon";
 
-import { useRouter } from "next/navigation";
+
 import Link from "next/link";
 
 function WatchCard({ data }: any) {
