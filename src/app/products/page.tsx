@@ -1,82 +1,79 @@
 "use client";
-import { Suspense } from "react";
-export default function ProductPage() {
-  return (
-    <>
-      <Suspense fallback={<Loader />}>
-        <Products />{" "}
-      </Suspense>{" "}
-    </>
-  );
-}
 
+import { useEffect, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
 import ProductsPage from "@/components/templates/ProductsPage";
-import { changePage, GetProducts, setTotal } from "@/store/redux/products";
+import { GetProducts, setTotal } from "@/store/redux/products";
 import { AppDispatch, RootState } from "@/store/store";
 import { ProductData, ProductState } from "@/Types/typesw";
-
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import Loader from "@/components/elements/Loader";
 
 function Products() {
-  if (typeof window !== "undefined") {
-    const searchParam = useSearchParams();
-    const dispatch = useDispatch<AppDispatch>();
-    try {
-      const { data, status, curentpage, total }: ProductState = useSelector(
-        (Products: RootState) => Products.prod
-      );
+  const searchParam = useSearchParams();
+  const dispatch = useDispatch<AppDispatch>();
 
-      const search = searchParam.get("search")?.toLocaleLowerCase() || "";
+  const {
+    data = { data: [] },
+    status,
+    curentpage,
+    total,
+  }: ProductState = useSelector((Products: RootState) => Products.prod);
 
-      const price = searchParam.get("price");
-      const product = searchParam.get("products");
-      useEffect(() => {
-        if (status === "idle") {
-          dispatch(GetProducts());
-        }
-        return () => {};
-      }, []);
+  const search = searchParam.get("search")?.toLocaleLowerCase() || "";
+  const price = searchParam.get("price");
+  const product = searchParam.get("products");
 
-      let filteredDAta: ProductData[] = Array(data)[0].data;
-      filteredDAta = datas();
-      function datas() {
-      
-        if (search) {
-          filteredDAta = filteredDAta.filter((i: ProductData) =>
-            i.title.toLocaleLowerCase().includes(search)
-          );
-        }
-
-        if (price) {
-          filteredDAta = filteredDAta.filter(
-            (i: ProductData) =>
-              +i.price > Number(price?.split(",")[0]) &&
-              +i.price < Number(price?.split(",")[1])
-          );
-        }
-
-        if (product && product !== "watches") {
-          filteredDAta = [];
-        }
-        dispatch(setTotal(filteredDAta))
-        
-        return filteredDAta;
-      }
-      return (
-        <ProductsPage
-          data={filteredDAta}
-          curentpage={curentpage}
-          status={status}
-          total={total}
-        />
-      );
-    } catch (err) {
-      return <h1>somtiong worng</h1>;
+  useEffect(() => {
+    if (status === "idle") {
+      dispatch(GetProducts());
     }
-  } else {
+  }, [status, dispatch]);
+
+  const filteredDAta = useMemo(() => {
+    if (!data || !Array.isArray(data.data)) {
+      return [];
+    }
+
+    let tempData = data.data;
+
+    if (search) {
+      tempData = tempData.filter((i: ProductData) =>
+        i.title.toLocaleLowerCase().includes(search)
+      );
+    }
+
+    if (price) {
+      tempData = tempData.filter(
+        (i: ProductData) =>
+          +i.price > Number(price?.split(",")[0]) &&
+          +i.price < Number(price?.split(",")[1])
+      );
+    }
+
+    if (product && product !== "watches") {
+      tempData = [];
+    }
+
+    return tempData;
+  }, [data, search, price, product]);
+
+  useEffect(() => {
+    dispatch(setTotal(filteredDAta));
+  }, [filteredDAta, dispatch]);
+
+  if (!data || status === "loading") {
     return <Loader />;
   }
+
+  return (
+    <ProductsPage
+      data={filteredDAta}
+      curentpage={curentpage}
+      status={status}
+      total={total}
+    />
+  );
 }
+
+export default Products;

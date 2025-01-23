@@ -16,31 +16,35 @@ import React, { useRef } from "react";
 import Buttonorgi from "../elements/Buttons";
 import BasketIcon from "../icons/BasketIcon";
 import AccountIcon from "../icons/AccountIcon";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 function Navbarcompnent() {
-  if (typeof window !== "undefined") {
-  const { onOpenChange, isOpen, onClose } = useDisclosure();
-  const pathName = usePathname();
-  
+  const router = useRouter();
   const icons = useRef([<AccountIcon />, <BasketIcon />]);
   const links = useRef(["/account/dashboard", "/basket"]);
+
+  const { onOpenChange, isOpen, onClose } = useDisclosure();
+  const pathName = usePathname();
+
   return (
-    <Navbar isMenuOpen={isOpen} onMenuOpenChange={onOpenChange} maxWidth="full" className="py-2 fixed shadow-md">
+    <Navbar
+      isMenuOpen={isOpen}
+      onMenuOpenChange={onOpenChange}
+      maxWidth="full"
+      className="py-2 fixed shadow-xl"
+    >
       <NavbarContent className="max-xl:ml-1 ml-16" justify="start">
-        <Link href={"/"}>
-          {" "}
-          <NavbarBrand>
-            <div className="  flex  flex-col   col-span-4 items-center leading-3">
-              <h1 className=" SpaceAGEfont font-medium max-sm:text-2xl text-3xl tracking-wider w-full">
-                VOLUmenZeIt
-              </h1>
-              <p className="font-spaceFont SpaceAGEfont text-xs max-sm:text-[10px] tracking-tighter  ">
-                VOLUMETRIC WRIST WATCHES
-              </p>
-            </div>
-          </NavbarBrand>
-        </Link>
+        {" "}
+        <NavbarBrand onClick={() => router.push("/")}>
+          <div className="  flex  flex-col   col-span-4 items-center leading-3">
+            <h1 className=" SpaceAGEfont font-medium max-sm:text-2xl text-3xl tracking-wider w-full">
+              VOLUmenZeIt
+            </h1>
+            <p className="font-spaceFont SpaceAGEfont text-xs max-sm:text-[10px] tracking-tighter  ">
+              VOLUMETRIC WRIST WATCHES
+            </p>
+          </div>
+        </NavbarBrand>
       </NavbarContent>{" "}
       <NavbarContent className="hidden lg:block  ">
         <div className=" flex justify-between text-textcolor items-center py-5 mr-2">
@@ -123,7 +127,8 @@ function Navbarcompnent() {
         )}
       </NavbarMenu>
     </Navbar>
-  );}
+  );
 }
 
 export default Navbarcompnent;
+

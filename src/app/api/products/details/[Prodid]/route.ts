@@ -10,13 +10,13 @@ export async function GET(
   try {
     await ConnecttoDB();
 
-    const id =await params?.Prodid.toString();
+    const {Prodid} =await params
 
-    const product = await Products.findOne({ _id: id });
+    const product = await Products.findOne({ _id: Prodid });
 
     if (!product) {
       return NextResponse.json(
-        { error: "products is not defind" },
+        { error: "connt find any product" },
         { status: 404 }
       );
     }

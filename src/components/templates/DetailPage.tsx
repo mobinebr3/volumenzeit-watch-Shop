@@ -1,23 +1,17 @@
-
 import { ProductfetchType } from "@/Types/typesw";
 
 import Buttonorgi from "../elements/Buttons";
-import Link from "next/link";
-import CubeARicon from "../icons/CubeARicon";
 
 import DetailsPhotoSwiper from "../modules/PorductModule/DetailsPhotoSwiper";
 
-import api from "@/server/papi";
 import VluomzimitLink from "../modules/Vluomzimit.Link";
 import AddProductTocart from "../modules/AddProductTocart";
 
 function DetailPage({ data }: ProductfetchType) {
   const { title, details, description, price, off, url } = data;
 
-
   return (
     <div className=" grid grid-cols-10 px-10 mt-8 max-lg:grid-cols-6  relative">
-    
       <DetailsPhotoSwiper />
       <div className=" col-span-3 h-fit  max-lg:col-span-6    max-lg:flex flex-col items-center min-w-[300px] max-w-[600px] mx-auto">
         <h1 className=" text-[30px] font-semibold">{title}</h1>
@@ -36,19 +30,14 @@ function DetailPage({ data }: ProductfetchType) {
           <hr className="my-5" />
           <div className="">
             <div className="flex items-center justify-between flex-wrap">
-              
-             <AddProductTocart data={data} />
-            
+              <AddProductTocart data={data} />
               <h1 className="text-black mr-5 text-[20px]">
                 ${Number(price).toLocaleString()}
               </h1>{" "}
               <VluomzimitLink />
               <Buttonorgi
-              onClick={null}
                 text={"Content Us"}
-              
                 customeClassStyle=" w-full mt-6"
-                
                 color="purpuleColor"
               />
             </div>
