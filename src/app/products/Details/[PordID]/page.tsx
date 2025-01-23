@@ -4,9 +4,9 @@ import { ProductfetchType } from "@/Types/typesw";
 
 import { Suspense } from "react";
 
-async function Details({ params }:any ) {
+async function Details({ params }: { params: Promise<{ PordID: number }> }) {
   try {
-    const  PordID = (await params)?.PordID
+    const { PordID } = await params;
 
     const res= await fetch(
       `${process.env.NEXTAUTH_URL}/api/products/details/${PordID}`
@@ -29,7 +29,6 @@ async function Details({ params }:any ) {
     </Suspense>
     </>
   ); } catch (error:any) {
-    console.log(error)
    return <code>error:{error}</code>
   }
   
