@@ -9,6 +9,7 @@ import Buttonorgi from "@/components/elements/Buttons";
 import { FiLinkedin } from "react-icons/fi";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Loader from "@/components/elements/Loader";
 
 function HeroPage() { if (typeof window !== "undefined") {
   const router = useRouter();
@@ -88,6 +89,8 @@ function HeroPage() { if (typeof window !== "undefined") {
         />
       </div>
     );
+  }else{
+    return <Loader />
   }
 }
 

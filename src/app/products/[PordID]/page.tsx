@@ -28,8 +28,8 @@ async function Details({ params }: { params: Promise<{ PordID: number }> }) {
       <DetailPage data={data} />
     </Suspense>
     </>
-  ); } catch (error) {
-   console.log(error)
+  ); } catch (error:any) {
+   return <h1>error:{error}</h1>
   }
   
 }
