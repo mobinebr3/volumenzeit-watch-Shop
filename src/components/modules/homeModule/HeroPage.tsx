@@ -7,11 +7,11 @@ import { FaTelegramPlane } from "react-icons/fa";
 import { FiInstagram } from "react-icons/fi";
 import Buttonorgi from "@/components/elements/Buttons";
 import { FiLinkedin } from "react-icons/fi";
-import Link from "next/link";
+
 import { useRouter } from "next/navigation";
 import Loader from "@/components/elements/Loader";
 
-function HeroPage() { if (typeof window !== "undefined") {
+function HeroPage() {
   const router = useRouter();
  
     return (
@@ -89,9 +89,7 @@ function HeroPage() { if (typeof window !== "undefined") {
         />
       </div>
     );
-  }else{
-    return <Loader />
-  }
+
 }
 
 export default HeroPage;

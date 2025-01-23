@@ -10,6 +10,7 @@ import Parallelogram from "@/components/icons/Parallelogram";
 import Buttonorgi from "@/components/elements/Buttons";
 
 function HomePage4() {
+ if(typeof window !== 'undefined'){
   const [slide, setSlide] = useState<number>(0);
   const ref = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
@@ -106,6 +107,7 @@ function HomePage4() {
       </div>
     </div>
   );
+ }
 }
 
 export default HomePage4;

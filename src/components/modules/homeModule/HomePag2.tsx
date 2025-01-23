@@ -129,7 +129,7 @@ function HomePag2() {
           <span className="absolute left-0 top-[392.9px]">
             <BrokeLine3 />
           </span>
-          <span className=" absolute max-w-[254px] -left-[250]  max-xl:-left-[100] max-xl:top-20 top-8">
+          <span className=" absolute max-w-[254px] -left-[250]  max-xl:-left-[100px] max-xl:top-20 top-8">
             <h1 className="text-[18px] font-medium ">Individual Style</h1>
             <h3 className=" text-[10px] text-textcolor leading-6  text-right">
               48 style combinations
