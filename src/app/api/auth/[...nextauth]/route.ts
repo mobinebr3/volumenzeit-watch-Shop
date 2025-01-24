@@ -20,17 +20,17 @@ export  const handler = NextAuth({
              try {
                await ConnecttoDB();
              } catch (err) {
-               throw new Error("مشکل در اتصال به دیتابیس");
+               throw new Error('Somthing worng');
              }
      
              const { email, password } = credentials || {};
              if (!email || !password) {
-               throw new Error("ایمیل و پسورد الزامی است.");
+               throw new Error("Eamil & passwaord are required");
              }
      
              const user = await User.findOne({ email });
              if (!user || !(await verifyPassword(password, user.password))) {
-               throw new Error("ایمیل یا پسورد نامعتبر است.");
+               throw new Error("Invalid email or passwaord ");
              }
      
              return { email: user.email, name: user.name, id: user._id };

@@ -23,7 +23,7 @@ export default function VideoModal() {
       <Modal
         backdrop="opaque"
         classNames={{
-          body: "",
+          body: " my-44",
           backdrop: "bg-[#292f46]/50 backdrop-opacity-40",
           base: " ",
 header: "text-[#735CFF]",

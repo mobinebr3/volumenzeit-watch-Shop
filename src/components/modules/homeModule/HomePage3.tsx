@@ -34,15 +34,16 @@ function HomePage3() {
           </div>
         ))}
       </div>
-      <div className="my-20 ">
+      <div className="mt-24 mb-10 ">
         <Buttonorgi
           color="#000000"
-          text={"Design your watch"}
-          customeClassStyle="px-8"
+          text={"Design your watch"} 
+          
+          customeClassStyle="px-8 hover:bg-[#ffff] hover:text-[#ffff]"
         />
       </div>
-      <div className=" w-full h-fit flex justify-between relative bg-black max-lg:flex-col max-lg:items-center ">
-        <span className=" z-30  borderTringle right-0  absolute"></span>
+      <div className=" w-full h-fit flex justify-between relative bg-black  text-white max-lg:flex-col max-lg:items-center ">
+        <span className=" z-10  borderTringle right-0  absolute"></span>
         <span className="relative   text-left ">
           <Image
             src="/images/702e0fe49fea979a1fb9299684156eb2.jpeg"
@@ -51,8 +52,8 @@ function HomePage3() {
             width={426}
             height={573}
           />
-          <div className="  from-black bg-gradient-to-l to-[rgb(0,0,0,.1)] w-20 h-full absolute z-20 left-[350px] top-0"></div>
-          <div className="  from-black bg-gradient-to-r to-[rgb(0,0,0,.03)] w-20 h-full absolute z-20 left-0 top-0"></div>
+          <div className="  from-black bg-gradient-to-l to-[rgb(0,0,0,.1)] w-20 h-full absolute z-10 left-[350px] top-0"></div>
+          <div className="  from-black bg-gradient-to-r to-[rgb(0,0,0,.03)] w-20 h-full absolute z-10 left-0 top-0"></div>
         </span>
         <div className="flex flex-col items-start justify-center *:my-5 leading-7 max-w-[400px] text-start mx-auto max-md:items-center max-sm:my-20 text-white  ">
           <h1 className="SpaceAGEfont text-[42px]  max-sm:text-[28px] ">

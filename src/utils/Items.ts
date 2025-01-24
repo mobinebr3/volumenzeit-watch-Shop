@@ -46,7 +46,7 @@ export const NavbarmobileItems: Navabritemstype = [
   {
     id: 7,
     title: "Store Locator",
-    link: "#",
+    link: "/account/baske",
   },
 ];
 

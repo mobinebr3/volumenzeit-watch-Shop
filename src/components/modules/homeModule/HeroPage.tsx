@@ -20,7 +20,7 @@ function HeroPage() {
       <div className="flex max-xl:flex-col-reverse max-xl:px-5 absolute z-20 max-lg:static ">
         <motion.div    initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 100 }}
-          transition={{duration:1}} className="flex  max-xl:*:mx-[2] mt-24 max-xl:mx-auto xl:ml-6 max-xl:items-center flex-col max-xl:flex-col-reverse  max-xl:-mt-6   items-center w-[15px]  ">
+          transition={{duration:1}} className="flex  max-xl:*:mx-[2px] mt-24 max-xl:mx-auto xl:ml-6 max-xl:items-center flex-col max-xl:flex-col-reverse  max-xl:-mt-6   items-center w-[15px]  ">
           <ul className=" *:mb-4   *:bg-white *:p-2 max-xl:*:mx-1  max-xl:flex-row  *:rounded-full max-xl:mt-3  *:drop-shadow-xl flex items-center flex-col ">
             <li className="hover:bg-purpuleColor *:text-white">
               {" "}
@@ -68,7 +68,7 @@ function HeroPage() {
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 100 }}
           transition={{duration:1}}
-          className="  flex flex-col items-start max-xl:items-center max-xl:text-center  mt-36 max-lg:mt-16  max-xl:ml-10 ml-24"
+          className="  flex flex-col items-start max-xl:items-center max-xl:text-center  mt-36 max-lg:mt-16  max-xl:ml-0  ml-24"
         >
           <h1 className=" SpaceAGEfont tracking-normal  max-lg:w-[450px] max-sm:w-[350px] w-[567px] max-sm:text-4xl max-lg:text-5xl text-6xl ">
             Find your dream watch

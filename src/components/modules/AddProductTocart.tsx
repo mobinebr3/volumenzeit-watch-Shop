@@ -5,6 +5,7 @@ import api from "@/server/papi";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { s } from "framer-motion/client";
+import { error } from "console";
 
 function AddProductTocart({ data }: ProductfetchType) {
   const { title, price, off, url, _id } = data;
@@ -43,8 +44,8 @@ function AddProductTocart({ data }: ProductfetchType) {
         SetStatus({...status, islaoding:false})
       })
       .catch((err) => {
-        toast.error(err.data.error);
-        SetStatus({...status,islaoding:false , isShow:true});
+        toast.error(err.error ||'somthing error');
+        SetStatus({...status,islaoding:false , isShow:false});
       });
   };
 

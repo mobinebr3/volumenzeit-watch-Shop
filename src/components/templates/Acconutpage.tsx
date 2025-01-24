@@ -13,7 +13,7 @@ function Acconutpage({ data }: { data: UserInfo }) {
   const query = usePathname();
 
   return (
-    <section className=" bg-bgcolor">
+    <section className="">
       <div className="w-full h-52 bg-purpuleColor flex justify-center items-center  max-md:h-32">
         {" "}
         <h3 className="SpaceAGEfont  text-white text-[42px]  max-md:text-[22px]">
