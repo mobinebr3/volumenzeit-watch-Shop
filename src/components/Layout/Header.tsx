@@ -10,12 +10,15 @@ import Buttonorgi from "../elements/Buttons";
 import HambergerMenu from "../elements/HambergerMenu";
 const icons = [<AccountIcon />, <BasketIcon />];
 const links = ["/account/dashboard", "/basket"];
+import {motion} from 'framer-motion'
 function Header() {
   const pathName = usePathname();
   const [isopen, setOpen] = useState(false);
   return (
     <>
-      <header className="flex items-center max-w-screen-2xl  sm:pr-5 mr-auto py-3  max-xl:pl-16 max-sm:px-7  w-full pl-32 backdrop-blur-md   z-50  bg-[#f9fafedf]   fixed ">
+      <motion.header     transition={{ duration: 1 }}
+    initial={{ translateY: "-100px", opacity: 0 }}
+    animate={{ translateY: 0, opacity: 100 }} className="flex items-center max-w-screen-2xl  sm:pr-5 mr-auto py-3  max-xl:pl-16 max-sm:px-7  w-full pl-32 backdrop-blur-md   z-50  bg-[#f9fafedf]   fixed ">
         <div className="max-w-full mr-auto ">
           <BasicTitle />
         </div>{" "}
@@ -55,9 +58,10 @@ function Header() {
           </span>
         </div>
      <HambergerMenu isopen={isopen} setOpen={setOpen}/>
-      </header>
-      <nav className={`  h-fit   `}>
-        {" "}
+      </motion.header>
+      <motion.nav  className={`  h-fit   `} transition={{ duration: 2 }}
+
+        >
         <div
           className={`lg:hidden fixed  ease-soft-spring duration-500  h-full z-40   mt-16  w-full flex flex-col items-center backdrop-blur-md bg-[#f9fafecf] ${
             isopen ? " mt-16 opacity-100 block" : "  -mt-[700px] opacity-0 hidden "
@@ -102,7 +106,7 @@ function Header() {
             )
           )}
         </div>
-      </nav>
+      </motion.nav>
     </>
   );
 }

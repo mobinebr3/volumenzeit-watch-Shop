@@ -107,9 +107,6 @@ function HomePag2() {
           Features
         </h2>
         <div className="col-span-12 w-[629px] h-[629px] mt-7 mx-auto relative">
-          <ul>
-            
-          </ul>
           <span className="absolute  right-[87px] top-[55px]">
             <Circle size="420" c="185" color="#37333F" r="205" ops=".8" />
           </span>
