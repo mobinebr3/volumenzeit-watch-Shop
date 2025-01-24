@@ -23,12 +23,13 @@ export default function VideoModal() {
       <Modal
         backdrop="opaque"
         classNames={{
-          body: " my-44",
+          body: "",
           backdrop: "bg-[#292f46]/50 backdrop-opacity-40",
           base: " ",
 header: "text-[#735CFF]",
           closeButton: "hover:bg-white/5 active:bg-white/10 hidden ",
         }}
+        className=" mb-44"
         isOpen={isOpen}
         radius="lg"
         onOpenChange={onOpenChange}
@@ -38,9 +39,9 @@ header: "text-[#735CFF]",
             <>
                     <ModalHeader onClick={onClose}> close</ModalHeader>
 
-              <ModalBody className="my-1 scrollbar-hide">
+              <ModalBody className="my-4 px-5  scrollbar-hide">
                 <iframe
-                  width="400"
+               
                   height="315"
                   scrolling="false"
                   src="https://www.youtube.com/embed/s-x_HVCwKgI?si=AxjaSQYj7fqFLTXU"
@@ -49,7 +50,7 @@ header: "text-[#735CFF]",
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   referrerPolicy="strict-origin-when-cross-origin"
                   allowFullScreen
-                  className="rounded-md"
+                  className="rounded-md w-full "
                 ></iframe>
               </ModalBody>
             </>
