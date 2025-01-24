@@ -1,3 +1,4 @@
+import Loader from "@/components/elements/Loader";
 import Acconutpage from "@/components/templates/Acconutpage";
 import User from "@/models/User";
 import { UserInfo } from "@/Types/typesw";
@@ -5,6 +6,7 @@ import { auth } from "@/utils/auth";
 import ConnecttoDB from "@/utils/ConnectToDB";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+import { Suspense } from "react";
 
 async function Accountroute({
   params,
@@ -26,7 +28,7 @@ async function Accountroute({
     if (accountroute === "admin" && res.role !== "ADMIN") redirect("/");
     if (accountroute === "edite" && res.role !== "ADMIN") redirect("/");
 
-    return <Acconutpage data={JSON.parse(JSON.stringify(res))} />;
+    return <Suspense fallback={<Loader />}><Acconutpage data={JSON.parse(JSON.stringify(res))} /></Suspense>;
   } catch (error) {
     console.log(error);
     return <div>somthing error</div>;

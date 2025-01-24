@@ -78,7 +78,7 @@ export const accountpanl = [
   {
     id: 2,
     path: "/account/basket",
-    titile: "ChekOut",
+    titile: "Cart",
   },
   {
     id: 3,

@@ -9,7 +9,8 @@ import Buttonorgi from "@/components/elements/Buttons";
 import { FiLinkedin } from "react-icons/fi";
 
 import { useRouter } from "next/navigation";
-
+import {motion} from 'motion/react'
+import React from "react";
 
 function HeroPage() {
   const router = useRouter();
@@ -61,7 +62,7 @@ function HeroPage() {
               <li>s</li>
             </ul>
           </div>
-          <div className="  flex flex-col items-start max-xl:items-center max-xl:text-center  mt-36 max-lg:mt-16  max-xl:ml-0  ml-24">
+          <motion.div initial={{scale:0}} animate={{scale:1}}     transition={{ease:'linear',duration:.1}} className="  flex flex-col items-start max-xl:items-center max-xl:text-center  mt-36 max-lg:mt-16  max-xl:ml-0  ml-24">
             <h1 className=" SpaceAGEfont tracking-normal  max-lg:w-[450px] max-sm:w-[350px] w-[567px] max-sm:text-4xl max-lg:text-5xl text-6xl ">
               Find your dream watch
             </h1>
@@ -78,13 +79,18 @@ function HeroPage() {
                 onClick={() => router.push("/products")}
               />
          
-          </div>
-        </div>{" "}
-        <Image
+          </motion.div>
+        </div>
+
+        <motion.img
+        initial={{scale:0}}
+        animate={{scale:1}}
+        transition={{ease:'linear',duration:.1}}
           src="/images/0547a3b4c7987c91ccd6d8481f4aa322.png"
           alt="watch"
           width={1096}
           height={524}
+          loading="lazy"
           className="  max-lg:static absolute object-center w-[1096px] h-[524px]  -right-64 top-44 max-xl:scale-85 max-xl:-right-80  max-lg:object-cover  max-lg:w-[1096px] max-lg:overflow-visible max-lg:ml-32  max-md:ml-14 max-sm:h-[393px] max-sm:ml-10 max-lg:-mb-10"
         />
       </div>
