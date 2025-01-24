@@ -5,7 +5,7 @@ import {
   Modal,
   ModalBody,
   ModalContent,
-  ModalFooter,
+
   ModalHeader,
 } from "@nextui-org/react";
 import { useDisclosure } from "@nextui-org/react";

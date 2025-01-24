@@ -60,7 +60,7 @@ function Header() {
         {" "}
         <div
           className={`lg:hidden fixed  ease-soft-spring duration-500  h-full z-40   mt-20  w-full flex flex-col items-center backdrop-blur-md bg-[#f9fafecf] ${
-            isopen ? " mt-20 opacity-100" : "  -mt-[700px] opacity-0 "
+            isopen ? " mt-16 opacity-100" : "  -mt-[700px] opacity-0 hidden "
           }`}
         >
           {NavbarmobileItems.map((i) =>
