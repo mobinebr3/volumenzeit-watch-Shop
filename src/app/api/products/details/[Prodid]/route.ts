@@ -4,8 +4,8 @@ import ConnecttoDB from "@/utils/ConnectToDB";
 import { NextResponse } from "next/server";
 
 export async function GET(
-  req: Request,
-  { params }: { params: { Prodid: string } }
+ 
+  { params }: any
 ) {
   try {
     await ConnecttoDB();
