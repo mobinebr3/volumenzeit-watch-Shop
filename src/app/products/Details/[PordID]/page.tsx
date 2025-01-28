@@ -30,7 +30,7 @@ export default async function Details({ params }: any) {
       </>
     );
   } catch (error: any) {
-      
+ 
     return <h1>Something went wrong!</h1>;
   }
 }
