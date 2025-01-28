@@ -4,7 +4,7 @@ import ConnecttoDB from "@/utils/ConnectToDB";
 import { NextResponse } from "next/server";
 
 export async function GET(
-  req: Request,
+  req: NextResponse,
   { params }: { params: { Prodid: string } }
 ) {
   try {
