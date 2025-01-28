@@ -5,7 +5,7 @@ import { ProductfetchType } from "@/Types/typesw";
 import { Suspense } from "react";
 
 export default async function Details({ params }: any) {
-  const id = (await params).PordID;
+  const id = await params.PordID
 
   try {
     const res = await fetch(
