@@ -30,8 +30,8 @@ export default async function Details({ params }: any) {
       </>
     );
   } catch (error:any) {
-    const err = await error.json()
-    console.log(err)
+ 
+    console.log(error)
     return <h1>Something went wrong!</h1>;
   }
 }
