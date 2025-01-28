@@ -6,7 +6,7 @@ import { Suspense } from "react";
 
 export default async function Details({ params }: any) {
   const id =  (await params).PordID
-console.log(id)
+
   try {
     const res  = await fetch(
       `${process.env.NEXTAUTH_URL}/api/products/details/${id}`

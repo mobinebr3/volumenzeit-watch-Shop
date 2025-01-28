@@ -1,22 +1,22 @@
 import Products from "@/models/Products";
 import ConnecttoDB from "@/utils/ConnectToDB";
 
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
-  req: NextResponse,
+  req: NextRequest,
   { params }: { params: { Prodid: string } }
 ) {
   try {
     await ConnecttoDB();
 
-    const {Prodid} =await params
+    const Prodid =(await params).Prodid
 
     const product = await Products.findOne({ _id: Prodid });
 
     if (!product) {
       return NextResponse.json(
-        { error: "connt find any product" },
+        { error: "can't find any product" },
         { status: 404 }
       );
     }
