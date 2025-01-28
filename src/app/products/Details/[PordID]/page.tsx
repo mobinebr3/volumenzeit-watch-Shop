@@ -5,14 +5,15 @@ import { ProductfetchType } from "@/Types/typesw";
 import { Suspense } from "react";
 
 export default async function Details({ params }: any) {
-  const id =  params.PordID
+  const id =  (await params).PordID
 
   try {
     const res = await fetch(
       `${process.env.NEXTAUTH_URL}/api/products/details/${id}`
     );
 
-    const { data }: ProductfetchType = await res.json();
+    const json = await res.json();
+    const {data} : ProductfetchType = json
 
     return (
       <>
