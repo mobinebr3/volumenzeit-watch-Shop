@@ -11,9 +11,8 @@ export default async function Details({ params }: any) {
     const res = await fetch(
       `${process.env.NEXTAUTH_URL}/api/products/details/${id}`
     );
-    if (res.statusText !== 'OK' ) return <h1>somthing error in connection</h1>
-    const { data }: ProductfetchType = await res.json();
 
+    const { data }: ProductfetchType = await res.json();
 
     return (
       <>
@@ -30,6 +29,7 @@ export default async function Details({ params }: any) {
       </>
     );
   } catch (error: any) {
-    return <code>error:{error}</code>;
+    console.log(error);
+    return <h1>Something went wrong!</h1>;
   }
 }
