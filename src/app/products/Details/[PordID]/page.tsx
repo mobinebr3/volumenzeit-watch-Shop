@@ -29,7 +29,7 @@ export default async function Details({ params }: any) {
       </>
     );
   } catch (error: any) {
-    console.log(error);
+    console.log(error.message|| 'error');
     return <h1>Something went wrong!</h1>;
   }
 }
